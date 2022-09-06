@@ -17,7 +17,7 @@ Description: "Profil zur Validierung der Output-Parameter für $submit-document"
     * ^comment = "=output-metadata"
   * name = "output-metadata" (exactly)
   * resource 1..1 MS
-  * resource only ISiKDokumentenMetadaten
+  * resource only ISiKPatient
     * ^short = "Ressource vom Type `DocumentReference`"
   * resource
     * id 1..1 MS
