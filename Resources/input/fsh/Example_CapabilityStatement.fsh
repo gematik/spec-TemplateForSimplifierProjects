@@ -191,14 +191,5 @@ Usage: #definition
   * extension.url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
   * extension.valueCode = #SHALL
   * name = #submit-document
-  * definition = Canonical(SubmitDocument)
-* rest.operation[+]
-  * extension.url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
-  * extension.valueCode = #MAY
-  * name = #update-metadata
-  * definition = Canonical(UpdateMetadata)
-* rest.operation[+]
-  * extension.url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
-  * extension.valueCode = #MAY
-  * name = #generate-metadata
-  * definition = Canonical(GenerateMetadata)
+  * definition = Canonical(ExampleOperation)
+
