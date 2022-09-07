@@ -1,7 +1,7 @@
 Instance: ExampleOperation
 InstanceOf: OperationDefinition
 Usage: #example
-* insert Meta
+/* * insert Meta */
 * id = "ISiKAppointmentBookOperation"
 * name = "ISiKAppointmentBookOperation"
 * url = "https://gematik.de/fhir/isik/v2/Terminplanung/OperationDefinition/AppointmentBook"
