@@ -1,7 +1,7 @@
-Profile: SubmitDocumentOutput
+Profile: ExampleOperation
 Parent: Parameters
 Id: SubmitDocumentOutput
-Title: "SubmitDocumentOutput"
+Title: "ExampleOperation"
 Description: "Profil zur Validierung der Output-Parameter für $submit-document"
 * insert Meta
 * parameter 1..* MS
@@ -38,10 +38,10 @@ Description: "Profil zur Validierung der Output-Parameter für $submit-document"
   * resource only OperationOutcome
     * ^short = "Ressource vom Type `OperationOutcome`"
 
-Instance: submit-document-out-params
-InstanceOf: SubmitDocumentOutput
+Instance: ExampleOutput-params
+InstanceOf: ExampleOperation
 Usage: #example
-Title: "submit-document-out-params"
+Title: "ExampleOutput-params"
 Description: ""
 * parameter[+]
   * name = "output-metadata"
