@@ -1,4 +1,4 @@
-Instance: ISiK-capabilityStatement-dokumentenaustausch-server
+Instance: ExampleCapabilityStatement
 InstanceOf: CapabilityStatement
 Usage: #definition
 * insert Meta-Inst
