@@ -8,4 +8,3 @@ Title:    "Metadaten eines strukturieren Dokumentes (Document-Bundle)"
 //* <element> -> "{map string}" "{comment string}" #{mime-type code}
 
 * identifier -> "Composition.identifier"
-* status -> "=current"
