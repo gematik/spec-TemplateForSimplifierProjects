@@ -35,7 +35,7 @@ Usage: #example
   * max = "1"
   * type = #Reference
   * documentation	= "Im Falle das ein Appointment keine Referenz auf ein oder mehrere Slots enthält MUSS der Server die benötigten Slots auf Basis der Referenz auf Schedule, sowie dem Start- und Endzeitpunkt im Appointment ermitteln."
-  * targetProfile = Canonical(ISiKKalender)
+  * targetProfile = Canonical(ISiKPatient)
 * parameter[+]
   * name = #return
   * use = #out
