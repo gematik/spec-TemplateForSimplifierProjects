@@ -1,4 +1,4 @@
-Profile: ISiKValueSet
+Profile: ExampleValueSet
 Parent: ValueSet
 Id: ISiKValueSet
 Description: "Dieses Profil beschreibt die maschinenlesbare Auswahl von Codes f√ºr die Kodierung spezifischer FHIR-Elemente in ISiK-Szenarien"
@@ -21,7 +21,7 @@ Description: "Dieses Profil beschreibt die maschinenlesbare Auswahl von Codes f√
 * expansion.contains.code 1.. MS
 * expansion.contains.display 1.. MS
 
-Instance: ISiKValueSetExample
+Instance: ValueSetExample
 InstanceOf: ISiKValueSet
 Usage: #example
 * url = "http://example.org/fhir/ValueSet/TestValueSet"
