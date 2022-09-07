@@ -1,6 +1,6 @@
 Profile: ExamplePatient
 Parent: Patient
-Id: ExamplePatient
+Id: ISiKPatient
 Description: "Dieses Profil beschreibt die Nutzung von administrativen Patientendaten in ISiK-Szenarien."
 * insert Meta
 * obeys isik-pat-1
