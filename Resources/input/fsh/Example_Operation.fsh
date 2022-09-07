@@ -1,6 +1,6 @@
 Profile: ExampleOperation
 Parent: Parameters
-Id: SubmitDocumentOutput
+Id: ExampleOperation
 Title: "ExampleOperation"
 Description: "Profil zur Validierung der Output-Parameter für $submit-document"
 * insert Meta
@@ -37,7 +37,7 @@ Description: "Profil zur Validierung der Output-Parameter für $submit-document"
   * resource 1..1 MS 
   * resource only OperationOutcome
     * ^short = "Ressource vom Type `OperationOutcome`"
-
+/*
 Instance: ExampleOutput-params
 InstanceOf: ExampleOperation
 Usage: #example
@@ -60,3 +60,4 @@ Title: "oo-beispiel"
   * severity = #information
   * code = #informational
   * diagnostics = "Well done!"
+*/
