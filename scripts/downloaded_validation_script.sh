@@ -5,7 +5,7 @@ LGREEN'\033[1;32m'
 ORANGE='\033[0;33m'
 RED='\033[0;31m'
 NC='\033[0m' # No Color
-validatordestination=../validator_cli.jar
+validatordestination=~/.fhir/validator_cli.jar
 validatorversion=5.6.48 #issue https://github.com/hapifhir/org.hl7.fhir.core/issues/825 is preventing a further update
 outputfolder=../val_out/${PWD##*/}
 foldername='./Resources'
@@ -17,7 +17,7 @@ sort_results="false"
 
 print_usage() {
   printf "Usage:
-  [-d foldername] sets foldername for validation. Default is: './Resources'
+  [-d foldername] sets foldername for validation. Default is: '../Resources'
   [-f filename] sets filename for single validation.
   [-i] installs dpendencies with firely.terminal from './Resources/sushi-config.yaml' file
   [-s] sorts resulting html files in folders by the severities of the findings. Categories are: error, warning, information and unknown\n"
@@ -139,7 +139,7 @@ while getopts 'd:f:is' flag; do
   esac
 done
 
-
+clear
 # create new output folder
 rm -rf "$outputfolder"
 mkdir -p "$outputfolder"
