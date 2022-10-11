@@ -6,7 +6,7 @@ ORANGE='\033[0;33m'
 RED='\033[0;31m'
 NC='\033[0m' # No Color
 validatordestination=../validator_cli.jar
-validatorversion=5.6.48
+validatorversion=5.6.48 #issue https://github.com/hapifhir/org.hl7.fhir.core/issues/825 is preventing a further update
 outputfolder=../val_out/${PWD##*/}
 foldername='./Resources'
 external_dependency_folder="./ExternalDependencies"
@@ -139,7 +139,7 @@ while getopts 'd:f:is' flag; do
   esac
 done
 
-clear
+
 # create new output folder
 rm -rf "$outputfolder"
 mkdir -p "$outputfolder"
