@@ -48,5 +48,5 @@ validate.sh -f ./Resources/fsh-generated/resources/myProfile.json
 `-v version` defines a version od the used Hapi Validator. If the specified version of the hapi validator is not present it will be downloaded to ~/.fhir/validators/
 
 ```bash
-validate.sh -s 5.6.70
+validate.sh -v 5.6.70
 ```
