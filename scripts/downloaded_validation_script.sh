@@ -20,7 +20,7 @@ print_usage() {
   [-f filename] sets filename for single validation.
   [-i] installs dpendencies with firely.terminal from './Resources/sushi-config.yaml' file
   [-s] sorts resulting html files in folders by the severities of the findings. Categories are: error, warning, information and unknown
-  [-v] specifies the version of the used Hapi-Validator. Example: -v 5.6.48\n"
+  [-v version] specifies the version of the used Hapi Validator. Example: -v 5.6.48\n"
 }
 
 sortBySeverity() {
