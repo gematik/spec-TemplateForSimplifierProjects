@@ -4,8 +4,7 @@ GREEN='\033[0;32m'
 LGREEN'\033[1;32m'
 ORANGE='\033[0;33m'
 RED='\033[0;31m'
-NC='\033[0m' # No Color
-validatordestination=~/.fhir/validator_cli.jar
+NC='\033[0m'            # No Color
 validatorversion=5.6.48 #issue https://github.com/hapifhir/org.hl7.fhir.core/issues/825 is preventing a further update
 outputfolder=../val_out/${PWD##*/}
 foldername='./Resources'
@@ -20,7 +19,8 @@ print_usage() {
   [-d foldername] sets foldername for validation. Default is: '../Resources'
   [-f filename] sets filename for single validation.
   [-i] installs dpendencies with firely.terminal from './Resources/sushi-config.yaml' file
-  [-s] sorts resulting html files in folders by the severities of the findings. Categories are: error, warning, information and unknown\n"
+  [-s] sorts resulting html files in folders by the severities of the findings. Categories are: error, warning, information and unknown
+  [-v] specifies the version of the used Hapi-Validator. Example: -v 5.6.48\n"
 }
 
 sortBySeverity() {
@@ -69,13 +69,31 @@ renameFhirFolderToLowerCase() {
   done
 }
 
+function validate_url() {
+  if [[ $(wget -S --spider $1 2>&1 | grep 'HTTP/1.1 200 OK') ]]; then
+    return 0
+  else
+    return 1
+  fi
+}
+
 checkAndDownloadHapiValidator() {
+  validatorversion_underscore=${validatorversion//./_}
+  validatordestination=~/.fhir/validators/validator_cli_v$validatorversion_underscore.jar
   if test -e "$validatordestination"; then
     echo "[INFO] HAPI Validator found at '$validatordestination'"
   else
     validatorsource=https://github.com/hapifhir/org.hl7.fhir.core/releases/download/$validatorversion/validator_cli.jar
     echo "[INFO] HAPI Validator not found. Starting to download HAPI Validator from $validatorsource ..."
-    wget $validatorsource -O $validatordestination
+    parentdir="$(dirname "$validatordestination")"
+    mkdir -p "$parentdir"
+    if validate_url $validatorsource; then
+      wget $validatorsource -O $validatordestination
+    else
+      echo -e "${RED}[ERROR] Unable to Download Hapi Validator in version $validatorversion. Script will end here. ${NC}"
+      exit 0
+    fi
+
   fi
 }
 
@@ -94,6 +112,8 @@ moveExternalDependencies() {
 }
 
 runHapiValidator() {
+  validatorversion_underscore=${validatorversion//./_}
+  validatordestination=~/.fhir/validators/validator_cli_v$validatorversion_underscore.jar
   # Concatenate folders_for_validation in fhir directory
   folders_to_validate=""
   for package in $( (ls -d $fhir_folder_path/*/package)); do
@@ -126,12 +146,13 @@ runHapiValidator() {
 
 }
 
-while getopts 'd:f:is' flag; do
+while getopts 'd:f:v:is' flag; do
   case "${flag}" in
   d) foldername="${OPTARG}" ;;
   f) file="${OPTARG}" ;;
   i) install_dependencies="true" ;;
   s) sort_results="true" ;;
+  v) validatorversion="${OPTARG}" ;;
   ?)
     print_usage
     exit 1
