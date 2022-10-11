@@ -5,7 +5,8 @@ LGREEN'\033[1;32m'
 ORANGE='\033[0;33m'
 RED='\033[0;31m'
 NC='\033[0m' # No Color
-validatorpath=../validator_cli.jar
+validatordestination=../validator_cli.jar
+validatorversion=5.6.48
 outputfolder=../val_out/${PWD##*/}
 foldername='./Resources'
 external_dependency_folder="./ExternalDependencies"
@@ -69,11 +70,12 @@ renameFhirFolderToLowerCase() {
 }
 
 checkAndDownloadHapiValidator() {
-  if test -e "$validatorpath"; then
-    echo "[INFO] HAPI Validator found at '$validatorpath'"
+  if test -e "$validatordestination"; then
+    echo "[INFO] HAPI Validator found at '$validatordestination'"
   else
-    echo "[INFO] HAPI Validator not found. Starting to download HAPI Validator..."
-    wget https://github.com/hapifhir/org.hl7.fhir.core/releases/latest/download/validator_cli.jar -O $validatorpath
+    validatorsource=https://github.com/hapifhir/org.hl7.fhir.core/releases/download/$validatorversion/validator_cli.jar
+    echo "[INFO] HAPI Validator not found. Starting to download HAPI Validator from $validatorsource ..."
+    wget $validatorsource -O $validatordestination
   fi
 }
 
@@ -106,7 +108,7 @@ runHapiValidator() {
       resultfile=$outputfolder"/$f.html"
 
       echo -e "[INFO] \n\nProcessing file \033[1m $f \033[0m"
-      java -jar $validatorpath -version 4.0.1"$folders_to_validate" -ig $foldername/fsh-generated/resources $filename -proxy 192.168.110.10:3128 -output $resultfile
+      java -jar $validatordestination -version 4.0.1"$folders_to_validate" -ig $foldername/fsh-generated/resources $filename -proxy 192.168.110.10:3128 -output $resultfile
       if [ $sort_results == "true" ]; then
         sortBySeverity "$resultfile"
       fi
@@ -116,7 +118,7 @@ runHapiValidator() {
     echo -e "\n\nProfiles to load for validation:  $folders_to_validate"
     result_filename="$(basename "$file")"
     #   += "-ig $package/package"
-    java -jar $validatorpath -version 4.0.1"$folders_to_validate" -ig $foldername/fsh-generated/resources $file -proxy 192.168.110.10:3128 -output $outputfolder"/$result_filename.html"
+    java -jar $validatordestination -version 4.0.1"$folders_to_validate" -ig $foldername/fsh-generated/resources $file -proxy 192.168.110.10:3128 -output $outputfolder"/$result_filename.html"
     if [ $sort_results == "true" ]; then
       sortBySeverity "$outputfolder""/$result_filename.html"
     fi
