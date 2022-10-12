@@ -25,7 +25,9 @@
     * "Read and write permissions" 
     * "Allow GitHub Actions to create and approve pull requests"
     * save!
-* Settings > Secrets > Actions > create repository secrets > "SIMPLIFIER_PASSWORD" + "SIMPLIFIER_USERNAME" + values  //TODO
+* Settings > Secrets > Actions > create repository secrets > New repository secret
+    * Name: SIMPLIFIER_USERNAME, Secret: *your simplifier username*
+    * Name: SIMPLIFIER_PASSWORD, Secret: *your simplifier password* 
 * Settings > Branches > Branch protection rule > Add rule > check 
     * "Require a pull request before merging" 
     * "Require approvals" 
