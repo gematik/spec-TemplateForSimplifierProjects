@@ -1,23 +1,16 @@
-# Setup Repo
+# Create the repository on GitHub
 1. Request a new Repo by creating a (OSPO ticket)[https://service.gematik.de/secure/CreateIssue!default.jspa]
     * Provide the [needed information](https://wiki.gematik.de/display/OSPO/GitHub+Berechtigungen#GitHubBerechtigungen-Anfordern) to the ticket
     * The name should correspond to "spec-[NameOfYourSimplifierProject]"
+    * A new repository will be created for you which is based on the [template repository](https://github.com/gematik/spec-TemplateForSimplifierProjects)
     
     <br/>
 
-2. Clone the FHIR-Template
-    * Log into your GitHub Account
-    * Navigate to the [template repository](https://github.com/gematik/spec-TemplateForSimplifierProjects)
-    * Click on "Use this template"
-    * Select the newly created repository as your destination
+2. Your new repository is created
 
     <br/>
 
-3. Your new repository is created
-
-    <br/>
-
-# Configure repo
+# Configure the repository on GitHub
 * Follow the instructions to create the first project via GitHub webpage 
 * Settings > Actions > General > check 
     * "Allow all actions and reusable workflows" 
@@ -39,11 +32,13 @@ Now you can clone your repo to your local machine.
     
 <br/>
 
-# Install FHIR tools
-The following script installs all necessary tools for specifying fhir resources onto your local machine.
+# Installing FHIR tools on your local machine
+**_NOTE:_** If you are using a ['box.fhir' Devbox](https://gitlab.prod.ccs.gematik.solutions/git/Verwaltung/Entwicklungsumgebung/devbox) you should have the neccessary dependencies already installed and this step can be skipped.
+
+Otherwise, the following script installs all necessary tools for specifying fhir resources onto your local machine.
 
 ```bash
 ./scripts/install_fhir_tools.sh
 ```
-(requires admin)
+(requires admin privileges)
 
