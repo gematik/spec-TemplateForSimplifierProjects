@@ -1,4 +1,6 @@
-"# spec-TemplateForSimplifierProjects"
+# Installation
+
+Here you can find the [installation and set up instructions](INSTALL.md)
 
 # Usage <a name = "usage"></a>
 
@@ -45,7 +47,7 @@ validate.sh -f ./Resources/fsh-generated/resources/myProfile.json
 
 ### Work with specific version of Hapi Validator
 
-`-v version` defines a version od the used Hapi Validator. If the specified version of the hapi validator is not present it will be downloaded to ~/.fhir/validators/
+`-v version` defines a version od the used Hapi Validator. If the specified version of the hapi validator is not present the default will be used. Validator-JARs will be downloaded to ~/.fhir/validators/.
 
 ```bash
 validate.sh -v 5.6.70
