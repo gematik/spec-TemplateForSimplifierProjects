@@ -32,13 +32,5 @@ Now you can clone your repo to your local machine.
     
 <br/>
 
-# Installing FHIR tools on your local machine
-**_NOTE:_** If you are using a ['box.fhir' Devbox](https://gitlab.prod.ccs.gematik.solutions/git/Verwaltung/Entwicklungsumgebung/devbox) you should have the neccessary dependencies already installed and this step can be skipped.
 
-Otherwise, the following script installs all necessary tools for specifying fhir resources onto your local machine.
-
-```bash
-./scripts/install_fhir_tools.sh
-```
-(requires admin privileges)
 
