@@ -1,5 +1,7 @@
 # ${fhir_name} FHIR-Profiles
 
+${fhir_profiles_description}
+
 ## Table of Contents
 
 - [About](#about)
@@ -8,7 +10,7 @@
 
 ## About <a name = "about"></a>
 
-This Repo contains the fsh files to the published ${fhir_name} files on <https://simplifier.net/${fhir_repo}> and a script to validate them.
+This Repo contains the fsh files to the published ${fhir_name} files on <https://simplifier.net/${simplifier_repo}> and a script to validate them.
 
 ## Getting Started <a name = "getting_started"></a>
 
@@ -35,8 +37,6 @@ This will install
 After successfull installation run:
 
 ```bash
-./validate.sh -i
+./validate.sh -is
 ```
-See `../val_out/<current_directory_name>` for results.
-
-
+See `../validation_results/` for results.

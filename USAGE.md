@@ -16,7 +16,7 @@ Run script `validate.sh` to
 
 1. Run sushi FHIR Files generator
 2. Validate all files in the `./Resources` folder
-3. Get a html output file for each FHIR file in `../val_out/<current_directory_name>`
+3. Get a html output file for each FHIR file in `../validation_results/`
 
 You can use following script options
 
