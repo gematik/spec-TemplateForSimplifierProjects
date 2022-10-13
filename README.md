@@ -4,7 +4,7 @@ This template standardizes the development of fhir resources with .fsh resources
 The following features are provided:
 
 * Best practices for modeling fsh files [see /Resources/input/fsh folder](./Resources/input/fsh).
-* Scripted creation and validation of fsh files and the generated fhir resources using a Hapi validator. [TODO link Usage]()
+* Scripted creation and validation of fsh files and the generated fhir resources using a Hapi validator. See [usage page](./USAGE.md).
 * Sorting of validation results by severity in subfolders.
 * Validation of committed fsh files via github-action with different validators (hapi, simplifier).
 # Installation
@@ -29,7 +29,7 @@ You can run [setup.sh](./scripts/setup.sh) or run these commands manually from t
 
 
 # Usage <a name = "usage"></a>
-Information about using the validator can be found in [USAGE.md](./USAGE.md)
+Information about using the validator can be found in [usage page](./USAGE.md).
 
 # Help
 
