@@ -1,7 +1,7 @@
 Profile: ExampleValueSet
 Parent: ValueSet
 Id: ExampleValueSet
-Description: "Dieses Profil beschreibt die maschinenlesbare Auswahl von Codes für die Kodierung spezifischer FHIR-Elemente in ISiK-Szenarien"
+Description: "Dieses Profil beschreibt die maschinenlesbare Auswahl von Codes für die Kodierung spezifischer FHIR-Elemente in YourNameHere-Szenarien"
 * insert Meta
 * id 1.. MS
 * url 1.. MS
