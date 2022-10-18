@@ -1,9 +1,9 @@
 Profile: ExamplePatient
 Parent: Patient
 Id: ExamplePatient
-Description: "Dieses Profil beschreibt die Nutzung von administrativen Patientendaten in ISiK-Szenarien."
+Description: "Dieses Profil beschreibt die Nutzung von administrativen Patientendaten in YourNameHere-Szenarien."
 * insert Meta
-* obeys isik-pat-1
+* obeys Example-pat-1
 * . ^constraint[5].source = Canonical(ExamplePatient)
 * id 1.. MS
 * identifier MS
@@ -158,7 +158,7 @@ Usage: #example
 * address[=].postalCode = "98764"
 * address[=].country = "DE"
 
-Invariant: isik-pat-1
+Invariant: Example-pat-1
 Description: "Falls die Geschlechtsangabe 'other' gewählt wird, muss die amtliche Differenzierung per Extension angegeben werden"
 Severity: #error
 Expression: "gender.exists() and gender='other' implies gender.extension('http://fhir.de/StructureDefinition/gender-amtlich-de').exists()"
