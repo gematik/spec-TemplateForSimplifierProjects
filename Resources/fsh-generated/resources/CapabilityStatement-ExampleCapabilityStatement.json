@@ -7,8 +7,8 @@
   "version": "2.0.0",
   "publisher": "gematik GmbH",
   "date": "2022-06-20",
-  "name": "CapabilityStatementDokumentenaustauschServer",
-  "title": "CapabilityStatement Dokumentenaustausch Server",
+  "name": "CapabilityStatementYourModuleServer",
+  "title": "CapabilityStatement YourModule Server",
   "description": "Das vorliegende CapabilityStatement beschreibt alle verpflichtenden Interaktionen die ein Projekt-konformes System unterstützen muss um das Bestätigungsverfahren des Moduls &quot;Dokumentenaustausch&quot; zu bestehen.",
   "jurisdiction": [
     {
@@ -43,7 +43,7 @@
           ],
           "type": "Patient",
           "supportedProfile": [
-            "https://gematik.de/fhir/isik/v2/Basismodul/StructureDefinition/ISiKPatient"
+            "https://gematik.de/fhir/yourProjectHere/v1/yourModuleHere/StructureDefinition/ExamplePatient"
           ],
           "interaction": [
             {
