@@ -3,8 +3,8 @@ InstanceOf: CapabilityStatement
 Usage: #definition
 * insert Meta-Inst
 * url = "https://gematik.de/fhir/yourProjectHere/v1/yourModuleHere/CapabilityStatement/yourCapabilityStatementPurposeNameHere"
-* name = "CapabilityStatementDokumentenaustauschServer"
-* title = "CapabilityStatement Dokumentenaustausch Server"
+* name = "CapabilityStatementYourModuleServer"
+* title = "CapabilityStatement YourModule Server"
 * description = "Das vorliegende CapabilityStatement beschreibt alle verpflichtenden Interaktionen die ein Projekt-konformes System unterstützen muss um das Bestätigungsverfahren des Moduls &quot;Dokumentenaustausch&quot; zu bestehen."
 * jurisdiction = urn:iso:std:iso:3166#DE "Germany"
 * kind = #requirements
@@ -17,7 +17,7 @@ Usage: #definition
   * extension.url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
   * extension.valueCode = #SHALL
   * type = #Patient
-  * supportedProfile = "https://gematik.de/fhir/isik/v2/Basismodul/StructureDefinition/ISiKPatient"
+  * supportedProfile = "https://gematik.de/fhir/yourProjectHere/v1/yourModuleHere/StructureDefinition/ExamplePatient"
   * interaction[+]
     * extension.url = "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"
     * extension.valueCode = #SHALL
