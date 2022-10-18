@@ -157,8 +157,3 @@ Usage: #example
 * address[=].city = "Musterhausen"
 * address[=].postalCode = "98764"
 * address[=].country = "DE"
-
-Invariant: Example-pat-1
-Description: "Falls die Geschlechtsangabe 'other' gewählt wird, muss die amtliche Differenzierung per Extension angegeben werden"
-Severity: #error
-Expression: "gender.exists() and gender='other' implies gender.extension('http://fhir.de/StructureDefinition/gender-amtlich-de').exists()"
