@@ -1,7 +1,7 @@
 Profile: ExamplePatient
 Parent: Patient
 Id: ExamplePatient
-Description: "Dieses Profil beschreibt die Nutzung von administrativen Patientendaten in ISiK-Szenarien."
+Description: "Dieses Profil beschreibt die Nutzung von administrativen Patientendaten in YourNameHere-Szenarien."
 * insert Meta
 * obeys isik-pat-1
 * . ^constraint[5].source = Canonical(ISiKPatient)
