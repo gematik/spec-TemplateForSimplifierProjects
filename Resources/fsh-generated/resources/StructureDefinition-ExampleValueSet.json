@@ -1,6 +1,6 @@
 {
   "resourceType": "StructureDefinition",
-  "id": "ISiKValueSet",
+  "id": "ExampleValueSet",
   "extension": [
     {
       "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-category",
@@ -11,7 +11,7 @@
       "valueCode": "anonymous"
     }
   ],
-  "url": "https://gematik.de/fhir/isik/v2/Basismodul/StructureDefinition/ISiKValueSet",
+  "url": "https://gematik.de/fhir/isik/v2/Basismodul/StructureDefinition/ExampleValueSet",
   "name": "ExampleValueSet",
   "status": "active",
   "experimental": false,

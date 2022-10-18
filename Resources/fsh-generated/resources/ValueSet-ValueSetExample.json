@@ -3,7 +3,7 @@
   "id": "ValueSetExample",
   "meta": {
     "profile": [
-      "https://gematik.de/fhir/isik/v2/Basismodul/StructureDefinition/ISiKValueSet"
+      "https://gematik.de/fhir/isik/v2/Basismodul/StructureDefinition/ExampleValueSet"
     ]
   },
   "useContext": [
