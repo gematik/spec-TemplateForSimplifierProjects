@@ -1,9 +1,9 @@
 {
   "resourceType": "ValueSet",
   "status": "active",
-  "name": "ISiKLocationPhysicalType",
-  "id": "ISiKLocationPhysicalType",
-  "url": "https://gematik.de/fhir/isik/v2/Basismodul/ValueSet/ISiKLocationPhysicalType",
+  "name": "YourNameHereLocationPhysicalType",
+  "id": "YourNameHereLocationPhysicalType",
+  "url": "https://gematik.de/fhir/isik/v2/Basismodul/ValueSet/YourNameHereLocationPhysicalType",
   "experimental": false,
   "publisher": "gematik GmbH",
   "date": "2022-06-30",
