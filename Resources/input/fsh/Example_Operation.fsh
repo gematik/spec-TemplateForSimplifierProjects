@@ -2,9 +2,9 @@ Instance: ExampleOperation
 InstanceOf: OperationDefinition
 Usage: #example
 * insert Meta-Inst
-* id = "ISiKAppointmentBookOperation"
-* name = "ISiKAppointmentBookOperation"
-* url = "https://gematik.de/fhir/isik/v2/Terminplanung/OperationDefinition/AppointmentBook"
+* id = "AppointmentBookOperation"
+* name = "AppointmentBookOperation"
+* url = "https://gematik.de/fhir/yourProjectHere/v1/yourModuleHere/OperationDefinition/AppointmentBook"
 * kind = #operation
 * name = "book"
 * code = #book
