@@ -1,10 +1,10 @@
 Profile: ExamplePatient
 Parent: Patient
-Id: ISiKPatient
+Id: ExamplePatient
 Description: "Dieses Profil beschreibt die Nutzung von administrativen Patientendaten in ISiK-Szenarien."
 * insert Meta
 * obeys isik-pat-1
-* . ^constraint[5].source = Canonical(ISiKPatient)
+* . ^constraint[5].source = Canonical(ExamplePatient)
 * id 1.. MS
 * identifier MS
   * ^slicing.discriminator.type = #pattern
@@ -107,7 +107,7 @@ Description: "Dieses Profil beschreibt die Nutzung von administrativen Patienten
     * ^constraint[1].source = Canonical(ISiKPatient)
 
 Instance: PatientinMusterfrau
-InstanceOf: ISiKPatient
+InstanceOf: ExamplePatient
 Usage: #example
 * identifier[0].type = $identifier-type-de-basis#GKV
 * identifier[=].system = "http://fhir.de/sid/gkv/kvid-10"

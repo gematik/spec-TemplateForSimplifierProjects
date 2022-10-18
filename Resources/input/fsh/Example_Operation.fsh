@@ -2,9 +2,9 @@ Instance: ExampleOperation
 InstanceOf: OperationDefinition
 Usage: #example
 * insert Meta-Inst
-* id = "ISiKAppointmentBookOperation"
-* name = "ISiKAppointmentBookOperation"
-* url = "https://gematik.de/fhir/isik/v2/Terminplanung/OperationDefinition/AppointmentBook"
+* id = "AppointmentBookOperation"
+* name = "AppointmentBookOperation"
+* url = "https://gematik.de/fhir/yourProjectHere/v1/yourModuleHere/OperationDefinition/AppointmentBook"
 * kind = #operation
 * name = "book"
 * code = #book
@@ -35,7 +35,7 @@ Usage: #example
   * max = "1"
   * type = #Reference
   * documentation	= "Im Falle das ein Appointment keine Referenz auf ein oder mehrere Slots enthält MUSS der Server die benötigten Slots auf Basis der Referenz auf Schedule, sowie dem Start- und Endzeitpunkt im Appointment ermitteln."
-  * targetProfile = Canonical(ISiKPatient)
+  * targetProfile = Canonical(ExamplePatient)
 * parameter[+]
   * name = #return
   * use = #out

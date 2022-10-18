@@ -62,5 +62,9 @@ Usage: #definition
     * name = "gender"
     * definition = "http://hl7.org/fhir/SearchParameter/individual-gender"
     * type = #token
-
+  * operation[+]
+    * extension.url = $capabilitystatement-expectation
+    * extension.valueCode = #SHALL
+    * name = "book"
+    * definition = Canonical(ISiKAppointmentBookOperation)
 
