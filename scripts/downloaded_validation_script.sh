@@ -6,7 +6,7 @@ ORANGE='\033[0;33m'
 RED='\033[0;31m'
 NC='\033[0m'            # No Color
 validatorversion=5.6.48 #issue https://github.com/hapifhir/org.hl7.fhir.core/issues/825 is preventing a further update
-outputfolder=./validation_results/
+outputfolder=./validation_results
 foldername='./Resources'
 external_dependency_folder="./ExternalDependencies"
 fhir_folder_path=~/.fhir/packages
@@ -93,7 +93,6 @@ checkAndDownloadHapiValidator() {
       echo -e "${RED}[ERROR] Unable to Download Hapi Validator in version $validatorversion. Script will end here. ${NC}"
       exit 0
     fi
-
   fi
 }
 
@@ -128,7 +127,8 @@ runHapiValidator() {
       resultfile=$outputfolder"/$f.html"
 
       echo -e "[INFO] \n\nProcessing file \033[1m $f \033[0m"
-      java -jar $validatordestination -version 4.0.1"$folders_to_validate" -ig $foldername/fsh-generated/resources $filename -proxy 192.168.110.10:3128 -output $resultfile
+      # echo java -jar $validatordestination -version 4.0.1"$folders_to_validate" -ig $foldername/fsh-generated/resources $filename -proxy 192.168.110.10:3128 -output $resultfile
+      java -jar $validatordestination -version 4.0.1$folders_to_validate -ig $foldername/fsh-generated/resources $filename -proxy 192.168.110.10:3128 -output $resultfile
       if [ $sort_results == "true" ]; then
         sortBySeverity "$resultfile"
       fi
