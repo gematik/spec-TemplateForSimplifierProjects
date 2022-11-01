@@ -138,7 +138,7 @@ runHapiValidator() {
     echo -e "\n\nProfiles to load for validation:  $folders_to_validate"
     result_filename="$(basename "$file")"
     #   += "-ig $package/package"
-    java -jar $validatordestination -version 4.0.1"$folders_to_validate" -ig $foldername/fsh-generated/resources $file -proxy 192.168.110.10:3128 -output $outputfolder"/$result_filename.html"
+    java -jar $validatordestination -version 4.0.1$folders_to_validate -ig $foldername/fsh-generated/resources $file -proxy 192.168.110.10:3128 -output $outputfolder"/$result_filename.html"
     if [ $sort_results == "true" ]; then
       sortBySeverity "$outputfolder""/$result_filename.html"
     fi
