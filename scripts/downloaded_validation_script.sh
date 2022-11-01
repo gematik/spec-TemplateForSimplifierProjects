@@ -127,7 +127,6 @@ runHapiValidator() {
       resultfile=$outputfolder"/$f.html"
 
       echo -e "[INFO] \n\nProcessing file \033[1m $f \033[0m"
-      # echo java -jar $validatordestination -version 4.0.1"$folders_to_validate" -ig $foldername/fsh-generated/resources $filename -proxy 192.168.110.10:3128 -output $resultfile
       java -jar $validatordestination -version 4.0.1$folders_to_validate -ig $foldername/fsh-generated/resources $filename -proxy 192.168.110.10:3128 -output $resultfile
       if [ $sort_results == "true" ]; then
         sortBySeverity "$resultfile"
