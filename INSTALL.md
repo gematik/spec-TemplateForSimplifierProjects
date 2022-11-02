@@ -1,5 +1,5 @@
 # Create the repository on GitHub
-1. Request a new Repo by creating a (OSPO ticket)[https://service.gematik.de/secure/CreateIssue!default.jspa]
+1. Request a new Repo by creating a [OSPO ticket](https://service.gematik.de/secure/CreateIssue!default.jspa)
     * Provide the [needed information](https://wiki.gematik.de/display/OSPO/GitHub+Berechtigungen#GitHubBerechtigungen-Anfordern) to the ticket
     * The name should correspond to "spec-[NameOfYourSimplifierProject]"
     * A new repository will be created for you which is based on the [template repository](https://github.com/gematik/spec-TemplateForSimplifierProjects)
@@ -7,7 +7,7 @@
     <br/>
 
 2. Your new repository is created
-3. Add your repository to our (GitHub Projects page)[https://wiki.gematik.de/display/QM/GitHub+Projects] and leave the needed details
+3. Add your repository to our [GitHub Projects page](https://wiki.gematik.de/display/QM/GitHub+Projects) and leave the needed details
 
     <br/>
 
