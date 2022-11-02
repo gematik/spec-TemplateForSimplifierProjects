@@ -7,7 +7,7 @@
     <br/>
 
 2. Your new repository is created
-3. Add your repository to our GitHub Projects page and leave the needed details https://wiki.gematik.de/display/QM/GitHub+Projects
+3. Add your repository to our (GitHub Projects page)[https://wiki.gematik.de/display/QM/GitHub+Projects] and leave the needed details
 
     <br/>
 
