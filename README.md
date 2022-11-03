@@ -12,22 +12,20 @@ The following features are provided:
 Here you can find the [installation instructions](INSTALL.md)
 
 # Setup
-You can browse through the [best practice files](./Resources/input/fsh) for some examples. Before you start specifying your own artifacts you should
+You can browse through the [best practice files](./Resources/input/fsh) for some examples. Before you start specifying your own artifacts you have to
 * configure [sushi-config.yaml](./Resources/sushi-config.yaml) with the dependencies that your project needs. These will be placed in the ~/.fhir/packages directory
 * delete all files in [./Resources/input/fsh](./Resources/input/fsh)
 * delete all files in [./Resources/fsh-generated/resources](./Resources/fsh-generated/resources)
 * delete [downloaded_validation_script.sh](./scripts/downloaded_validation_script.sh)
-* delete [install_fhir_tools.sh](./scripts/install_fhir_tools.sh)
+* delete [install_fhir_tools.sh](./scripts/install_fhir_tools.sh) when you have already installed the FHIR Tools by using this script. Otherwise do not delete now.
 * delete [this readme file](./README.md) and rename Readme_template.md with README.md
 * populate the new README.md with information for your repository
 
 You can run [setup.sh](./scripts/setup.sh) or run these commands manually from the root of your repository and then adapt the README.md
 
 ```bash
-./scripts/setup.sh
+chmod u+x ./scripts/setup.sh && ./scripts/setup.sh
 ```
-
-
 # Usage <a name = "usage"></a>
 Information about using the validator can be found in [usage page](./USAGE.md).
 
