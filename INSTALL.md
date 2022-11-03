@@ -17,14 +17,14 @@
 * Configure some settings to prepare your repository for the intended behaviour
     * Settings > Actions > General > check
         * "Allow all actions and reusable workflows"
-        * "Require approval for first-time contributors"
         * "Read and write permissions"
         * "Allow GitHub Actions to create and approve pull requests"
         * save!
     * Settings > Secrets > Actions > create repository secrets > New repository secret
         * Name: SIMPLIFIER_USERNAME, Secret: *your simplifier username*
         * Name: SIMPLIFIER_PASSWORD, Secret: *your simplifier password*
-    * Settings > Branches > Branch protection rule > Add rule > check
+    * Settings > Branches > Branch protection rule > Add branch protection rule > check
+        * enter branch name pattern "*"
         * "Require a pull request before merging"
         * "Require approvals"
         * "Require status checks to pass before merging"
