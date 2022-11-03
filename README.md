@@ -14,8 +14,8 @@ Here you can find the [installation instructions](INSTALL.md)
 # Setup
 You can browse through the [best practice files](./Resources/input/fsh) for some examples. Before you start specifying your own artifacts you have to
 * configure [sushi-config.yaml](./Resources/sushi-config.yaml) with the dependencies that your project needs. These will be placed in the ~/.fhir/packages directory
-* delete all files in [./Resources/input/fsh](./Resources/input/fsh) <!-- Helfer-Script zum Putzen dieses Verzeichnisses? -->
-* delete all files in [./Resources/fsh-generated/resources](./Resources/fsh-generated/resources) <!-- Helfer-Script zum Putzen dieses Verzeichnisses? -->
+* delete all files in [./Resources/input/fsh](./Resources/input/fsh)
+* delete all files in [./Resources/fsh-generated/resources](./Resources/fsh-generated/resources)
 * delete [downloaded_validation_script.sh](./scripts/downloaded_validation_script.sh)
 * delete [install_fhir_tools.sh](./scripts/install_fhir_tools.sh), unless you have already installed the FHIR Tools by using this script. Otherwise do not delete now.
 * delete [this readme file](./README.md) and rename Readme_template.md with README.md
@@ -26,8 +26,6 @@ You can run [setup.sh](./scripts/setup.sh) or run these commands manually from t
 ```bash
 chmod u+x ./scripts/setup.sh && ./scripts/setup.sh
 ```
-<!-- chmod war bei mir notwendig, sonst war das Script nicht ausführbar -->
-
 # Usage <a name = "usage"></a>
 Information about using the validator can be found in [usage page](./USAGE.md).
 

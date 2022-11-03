@@ -2,7 +2,9 @@
 1. Request a new repository by creating a [OSPO ticket](https://service.gematik.de/secure/CreateIssue!default.jspa)
     * Provide the [needed information](https://wiki.gematik.de/display/OSPO/GitHub+Berechtigungen#GitHubBerechtigungen-Anfordern) to the ticket
     * The name should correspond to "spec-[NameOfYourSimplifierProject]" naming convention
-    * While creating this ticket, additionally provide information that you want to create your repository by cloning from "spec-TemplateForSimplifierProjects", so that a new repository will be created for you which is based on the [template repository](https://github.com/gematik/spec-TemplateForSimplifierProjects)
+    * While creating this ticket, additionally provide information that
+        * you want to create your repository by cloning from "spec-TemplateForSimplifierProjects", so that a new repository will be created for you which is based on the [template repository](https://github.com/gematik/spec-TemplateForSimplifierProjects)
+        * you need appropriate access privileges to manipulate the settings of the new repository
 
     <br/>
 
@@ -12,26 +14,23 @@
     <br/>
 
 # Configure the repository on GitHub
-* Follow the instructions to create the first project via GitHub webpage <!-- unklar, was damit gemeint ist.. konkreter -->
-* Settings > Actions > General > check <!-- Ist vom o.g. Prozess sichergestellt, dass man die Rechte auf Settings hat? In meinem Fall ist das nicht so, sehe keine Settings auf der Repo-Mainpage (hinter Insights ist nichts). Oder sagen, dass die Settings-Anpassungen optional sind, weil das Repo jemand anderes konfiguriert hat -->
-    * "Allow all actions and reusable workflows"
-    * "Require approval for first-time contributors"
-    * "Read and write permissions"
-    * "Allow GitHub Actions to create and approve pull requests"
-    * save!
-* Settings > Secrets > Actions > create repository secrets > New repository secret <!-- same -->
-    * Name: SIMPLIFIER_USERNAME, Secret: *your simplifier username*
-    * Name: SIMPLIFIER_PASSWORD, Secret: *your simplifier password*
-* Settings > Branches > Branch protection rule > Add rule > check <!-- same -->
-    * "Require a pull request before merging"
-    * "Require approvals"
-    * "Require status checks to pass before merging"
-    * "Require branches to be up to date before merging"
-    * save
+* Configure some settings to prepare your repository for the intended behaviour
+    * Settings > Actions > General > check
+        * "Allow all actions and reusable workflows"
+        * "Require approval for first-time contributors"
+        * "Read and write permissions"
+        * "Allow GitHub Actions to create and approve pull requests"
+        * save!
+    * Settings > Secrets > Actions > create repository secrets > New repository secret
+        * Name: SIMPLIFIER_USERNAME, Secret: *your simplifier username*
+        * Name: SIMPLIFIER_PASSWORD, Secret: *your simplifier password*
+    * Settings > Branches > Branch protection rule > Add rule > check
+        * "Require a pull request before merging"
+        * "Require approvals"
+        * "Require status checks to pass before merging"
+        * "Require branches to be up to date before merging"
+        * save
 
 Now you can clone your repository to your local machine.
 
 <br/>
-
-
-
