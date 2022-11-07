@@ -62,10 +62,10 @@ After successfull installation run:
 See `../validation_results/` for results.
  
 ## Usage
-<!-- add your own text here -->
+See [Usage.md](./USAGE.md)
  
 ## Contributing
-If you want to contribute, please check our `CONTRIBUTING.md`.
+If you want to contribute, please check our [CONTRIBUTING.md](./CONTRIBUTING.md).
  
 ## License
  
