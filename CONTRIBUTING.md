@@ -1,9 +1,8 @@
 # Welcome to the gematik contributing guide <!-- omit in toc -->
  
 Thank you for investing your time in contributing to our projects!
- 
-<!-- do we have a Code of Conduct? What are the general rules of contribution? First issue and discussion?
-Read our [Code of Conduct](./CODE_OF_CONDUCT.md) to keep our community approachable and respectable. -->
+
+Read our [Code of Conduct](./CODE_OF_CONDUCT.md) to keep our community approachable and respectable.
  
 In this guide you will get an overview how you can contribute to our projects by opening an issue, creating, reviewing and merging a pull request.
  
