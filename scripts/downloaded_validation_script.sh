@@ -106,7 +106,7 @@ moveExternalDependencies() {
     echo "[INFO] copying external dependecies to $fhir_folder_path"
     cp -a $external_dependency_folder/. $fhir_folder_path/
   else
-    echo -e "${RED}[Error] $external_dependency_folder missing. No external dependencies will be copied!${NC}"
+    echo -e "${ORANGE}[Warning] $external_dependency_folder missing. No external dependencies will be copied!${NC}"
   fi
 }
 
