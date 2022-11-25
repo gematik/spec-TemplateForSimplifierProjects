@@ -13,6 +13,8 @@ fhir_folder_path=~/.fhir/packages
 file=''
 install_dependencies="false"
 sort_results="false"
+proxy_active=true
+proxy_address="192.168.110.10:3128"
 
 print_usage() {
   printf "Usage:
@@ -77,6 +79,32 @@ function validate_url() {
   fi
 }
 
+checkOrCreateConfigFile() {
+  configurationfile="scripts/validation_script-config.yaml"
+  if test -e $configurationfile; then
+    echo "[INFO] Configurationfile '$configurationfile' found."
+    readarray proxySettings < <(yq e '.proxy' $configurationfile)
+    IFS=: read -r a active <<<"${proxySettings[0]}"
+    if [ $active == "true" ]; then
+      IFS=: read -r b proxy_address_new <<<"${proxySettings[1]}"
+      proxy_address_new=${proxy_address_new//[[:blank:]]/}
+      if [ "$proxy_address" != "$proxy_address_new" ]; then
+        proxy_address=$proxy_address_new
+        echo "[INFO] Updated proxy address to $proxy_address"
+      fi
+    else
+      echo "[INFO] Deactivated proxy usage."
+      proxy_active=false
+    fi
+
+  else
+    echo "proxy:" >>$configurationfile
+    echo "  active: active" >>$configurationfile
+    echo "  address: 192.168.110.10:3128" >>$configurationfile
+    echo "[INFO] Written new '$configurationfile'. Please change proxy settings if needed."
+  fi
+}
+
 checkAndDownloadHapiValidator() {
   validatorversion_underscore=${validatorversion//./_}
   validatordestination=~/.fhir/validators/validator_cli_v$validatorversion_underscore.jar
@@ -118,6 +146,11 @@ runHapiValidator() {
   for package in $( (ls -d $fhir_folder_path/*/package)); do
     folders_to_validate+=" -ig ${package}"
   done
+  # Proxy Settings
+  if [ $proxy_active == "true" ]; then
+    proxy_string="-proxy $proxy_address"
+  fi
+
   # Only validating one file?
   if [ -z "$file" ]; then
     echo "[INFO] Validating files in folder '$foldername/fsh-generated/resources/' ..."
@@ -127,7 +160,7 @@ runHapiValidator() {
       resultfile=$outputfolder"/$f.html"
 
       echo -e "[INFO] \n\nProcessing file \033[1m $f \033[0m"
-      java -jar $validatordestination -version 4.0.1$folders_to_validate -ig $foldername/fsh-generated/resources $filename -proxy 192.168.110.10:3128 -output $resultfile
+      java -jar $validatordestination -version 4.0.1$folders_to_validate -ig $foldername/fsh-generated/resources $filename $proxy_string -output $resultfile
       if [ $sort_results == "true" ]; then
         sortBySeverity "$resultfile"
       fi
@@ -137,7 +170,7 @@ runHapiValidator() {
     echo -e "\n\nProfiles to load for validation:  $folders_to_validate"
     result_filename="$(basename "$file")"
     #   += "-ig $package/package"
-    java -jar $validatordestination -version 4.0.1$folders_to_validate -ig $foldername/fsh-generated/resources $file -proxy 192.168.110.10:3128 -output $outputfolder"/$result_filename.html"
+    java -jar $validatordestination -version 4.0.1$folders_to_validate -ig $foldername/fsh-generated/resources $file $proxy_string -output $outputfolder"/$result_filename.html"
     if [ $sort_results == "true" ]; then
       sortBySeverity "$outputfolder""/$result_filename.html"
     fi
@@ -165,6 +198,7 @@ rm -rf "$outputfolder"
 mkdir -p "$outputfolder"
 echo "[INFO] Validation output is written to '$outputfolder'"
 
+checkOrCreateConfigFile
 installDependencies
 renameFhirFolderToLowerCase
 checkAndDownloadHapiValidator
