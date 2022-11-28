@@ -60,7 +60,14 @@ validate.sh -f ./Resources/fsh-generated/resources/myProfile.json
 ```bash
 validate.sh -v 5.6.70
 ```
-
+### Changing of proxy settings
+On the first run a config file with the standard proxy settings used by the gematik is created and saved in the scripts folder with the name 'validation_script-config.yaml'.
+```yaml
+proxy:
+  active: true # set to false to deactivate proxy usage
+  address: 192.168.110.10:3128
+```
+If you want to use no proxy, or change the ip address just update this file accordingly.
 # Help
 
 If you find issues with this template project, please leave an issue or create a Pull Request via  the [template repository](https://github.com/gematik/spec-TemplateForSimplifierProjects).
