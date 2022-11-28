@@ -142,7 +142,7 @@ runHapiValidator() {
   validatorversion_underscore=${validatorversion//./_}
   validatordestination=~/.fhir/validators/validator_cli_v$validatorversion_underscore.jar
   # Concatenate folders_for_validation in fhir directory
-  folders_to_validate=""
+  folders_to_validate=" -ig $fhir_folder_path"
   for package in $( (ls -d $fhir_folder_path/*/package)); do
     folders_to_validate+=" -ig ${package}"
   done
