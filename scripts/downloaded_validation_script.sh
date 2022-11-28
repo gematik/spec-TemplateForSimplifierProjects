@@ -99,7 +99,7 @@ checkOrCreateConfigFile() {
 
   else
     echo "proxy:" >>$configurationfile
-    echo "  active: true  # set to false to deactivate proxy usage" >>$configurationfile
+    echo "  active: true" >>$configurationfile
     echo "  address: 192.168.110.10:3128" >>$configurationfile
     echo "[INFO] Written new '$configurationfile'. Please change proxy settings if needed."
   fi
