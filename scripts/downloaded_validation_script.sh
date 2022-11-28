@@ -99,7 +99,7 @@ checkOrCreateConfigFile() {
 
   else
     echo "proxy:" >>$configurationfile
-    echo "  active: active" >>$configurationfile
+    echo "  active: true  # set to false to deactivate proxy usage" >>$configurationfile
     echo "  address: 192.168.110.10:3128" >>$configurationfile
     echo "[INFO] Written new '$configurationfile'. Please change proxy settings if needed."
   fi
@@ -147,6 +147,7 @@ runHapiValidator() {
     folders_to_validate+=" -ig ${package}"
   done
   # Proxy Settings
+  proxy_string=""
   if [ $proxy_active == "true" ]; then
     proxy_string="-proxy $proxy_address"
   fi

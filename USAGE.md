@@ -64,7 +64,7 @@ validate.sh -v 5.6.70
 On the first run a config file with the standard proxy settings used by the gematik is created and saved in the scripts folder with the name 'validation_script-config.yaml'.
 ```yaml
 proxy:
-  active: active
+  active: true # set to false to deactivate proxy usage
   address: 192.168.110.10:3128
 ```
 If you want to use no proxy, or change the ip address just update this file accordingly.
