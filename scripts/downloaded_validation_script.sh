@@ -52,7 +52,7 @@ sortBySeverity() {
 
 installDependencies() {
   if [ $install_dependencies == "true" ]; then
-    readarray identityMappings < <(yq '.dependencies' $foldername/sushi-config.yaml)
+    readarray identityMappings < <(yq e '.dependencies' $foldername/sushi-config.yaml)
     echo -e "${GREEN}[INFO] Installation of depencencies from '$foldername/sushi-config.yaml' has started...${NC}"
     for dependency in "${identityMappings[@]}"; do
       IFS=: read -r package version <<<"$dependency"
