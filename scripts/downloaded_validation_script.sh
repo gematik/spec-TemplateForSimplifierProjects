@@ -161,7 +161,7 @@ runHapiValidator() {
       resultfile=$outputfolder"/$f.html"
 
       echo -e "[INFO] \n\nProcessing file \033[1m $f \033[0m"
-      java -jar $validatordestination -version 4.0.1$folders_to_validate -ig $foldername/fsh-generated/resources $filename $proxy_string -output $resultfile
+      java -jar $validatordestination -version 4.0.1$folders_to_validate -ig $foldername/fsh-generated/resources $filename $proxy_string -jurisdiction DE -output $resultfile
       if [ $sort_results == "true" ]; then
         sortBySeverity "$resultfile"
       fi
@@ -171,7 +171,7 @@ runHapiValidator() {
     echo -e "\n\nProfiles to load for validation:  $folders_to_validate"
     result_filename="$(basename "$file")"
     #   += "-ig $package/package"
-    java -jar $validatordestination -version 4.0.1$folders_to_validate -ig $foldername/fsh-generated/resources $file $proxy_string -output $outputfolder"/$result_filename.html"
+    java -jar $validatordestination -version 4.0.1$folders_to_validate -ig $foldername/fsh-generated/resources $file $proxy_string -jurisdiction DE -output $outputfolder"/$result_filename.html"
     if [ $sort_results == "true" ]; then
       sortBySeverity "$outputfolder""/$result_filename.html"
     fi
