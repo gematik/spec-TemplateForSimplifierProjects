@@ -104,14 +104,6 @@
         "sliceName": "VersichertenId-GKV",
         "min": 0,
         "max": "1",
-        "type": [
-          {
-            "code": "Identifier",
-            "profile": [
-              "http://fhir.de/StructureDefinition/identifier-kvid-10"
-            ]
-          }
-        ],
         "patternIdentifier": {
           "type": {
             "coding": [
@@ -146,14 +138,6 @@
         "sliceName": "Patientennummer",
         "min": 1,
         "max": "*",
-        "type": [
-          {
-            "code": "Identifier",
-            "profile": [
-              "http://fhir.de/StructureDefinition/identifier-pid"
-            ]
-          }
-        ],
         "patternIdentifier": {
           "type": {
             "coding": [
@@ -187,14 +171,6 @@
         "sliceName": "Versichertennummer_PKV",
         "min": 0,
         "max": "1",
-        "type": [
-          {
-            "code": "Identifier",
-            "profile": [
-              "http://fhir.de/StructureDefinition/identifier-pkv"
-            ]
-          }
-        ],
         "patternIdentifier": {
           "type": {
             "coding": [
@@ -270,14 +246,6 @@
         "sliceName": "Name",
         "min": 1,
         "max": "1",
-        "type": [
-          {
-            "code": "HumanName",
-            "profile": [
-              "http://fhir.de/StructureDefinition/humanname-de-basis"
-            ]
-          }
-        ],
         "patternHumanName": {
           "use": "official"
         },
@@ -296,26 +264,6 @@
         "mustSupport": true
       },
       {
-        "id": "Patient.name:Name.family.extension:namenszusatz",
-        "path": "Patient.name.family.extension",
-        "sliceName": "namenszusatz",
-        "mustSupport": true
-      },
-      {
-        "id": "Patient.name:Name.family.extension:nachname",
-        "path": "Patient.name.family.extension",
-        "sliceName": "nachname",
-        "max": "1",
-        "mustSupport": true
-      },
-      {
-        "id": "Patient.name:Name.family.extension:vorsatzwort",
-        "path": "Patient.name.family.extension",
-        "sliceName": "vorsatzwort",
-        "max": "1",
-        "mustSupport": true
-      },
-      {
         "id": "Patient.name:Name.given",
         "path": "Patient.name.given",
         "min": 1,
@@ -327,31 +275,11 @@
         "mustSupport": true
       },
       {
-        "id": "Patient.name:Name.prefix.extension:prefix-qualifier",
-        "path": "Patient.name.prefix.extension",
-        "sliceName": "prefix-qualifier",
-        "max": "1",
-        "mustSupport": true
-      },
-      {
-        "id": "Patient.name:Name.prefix.extension:prefix-qualifier.value[x]",
-        "path": "Patient.name.prefix.extension.value[x]",
-        "fixedCode": "AC"
-      },
-      {
         "id": "Patient.name:Geburtsname",
         "path": "Patient.name",
         "sliceName": "Geburtsname",
         "min": 0,
         "max": "1",
-        "type": [
-          {
-            "code": "HumanName",
-            "profile": [
-              "http://fhir.de/StructureDefinition/humanname-de-basis"
-            ]
-          }
-        ],
         "patternHumanName": {
           "use": "maiden"
         },
@@ -367,26 +295,6 @@
         "id": "Patient.name:Geburtsname.family",
         "path": "Patient.name.family",
         "min": 1,
-        "mustSupport": true
-      },
-      {
-        "id": "Patient.name:Geburtsname.family.extension:namenszusatz",
-        "path": "Patient.name.family.extension",
-        "sliceName": "namenszusatz",
-        "mustSupport": true
-      },
-      {
-        "id": "Patient.name:Geburtsname.family.extension:nachname",
-        "path": "Patient.name.family.extension",
-        "sliceName": "nachname",
-        "max": "1",
-        "mustSupport": true
-      },
-      {
-        "id": "Patient.name:Geburtsname.family.extension:vorsatzwort",
-        "path": "Patient.name.family.extension",
-        "sliceName": "vorsatzwort",
-        "max": "1",
         "mustSupport": true
       },
       {
@@ -413,22 +321,6 @@
         "id": "Patient.gender",
         "path": "Patient.gender",
         "min": 1,
-        "mustSupport": true
-      },
-      {
-        "id": "Patient.gender.extension:Geschlecht-Administrativ",
-        "path": "Patient.gender.extension",
-        "sliceName": "Geschlecht-Administrativ",
-        "min": 0,
-        "max": "1",
-        "type": [
-          {
-            "code": "Extension",
-            "profile": [
-              "http://fhir.de/StructureDefinition/gender-amtlich-de"
-            ]
-          }
-        ],
         "mustSupport": true
       },
       {
@@ -480,14 +372,6 @@
         "sliceName": "Strassenanschrift",
         "min": 0,
         "max": "*",
-        "type": [
-          {
-            "code": "Address",
-            "profile": [
-              "http://fhir.de/StructureDefinition/address-de-basis"
-            ]
-          }
-        ],
         "patternAddress": {
           "type": "both"
         },
@@ -504,30 +388,6 @@
         "path": "Patient.address.line",
         "min": 1,
         "mustSupport": true
-      },
-      {
-        "id": "Patient.address:Strassenanschrift.line.extension:Strasse",
-        "path": "Patient.address.line.extension",
-        "sliceName": "Strasse",
-        "mustSupport": true
-      },
-      {
-        "id": "Patient.address:Strassenanschrift.line.extension:Hausnummer",
-        "path": "Patient.address.line.extension",
-        "sliceName": "Hausnummer",
-        "mustSupport": true
-      },
-      {
-        "id": "Patient.address:Strassenanschrift.line.extension:Adresszusatz",
-        "path": "Patient.address.line.extension",
-        "sliceName": "Adresszusatz",
-        "mustSupport": true
-      },
-      {
-        "id": "Patient.address:Strassenanschrift.line.extension:Postfach",
-        "path": "Patient.address.line.extension",
-        "sliceName": "Postfach",
-        "max": "0"
       },
       {
         "id": "Patient.address:Strassenanschrift.city",
@@ -562,14 +422,6 @@
         "sliceName": "Postfach",
         "min": 0,
         "max": "*",
-        "type": [
-          {
-            "code": "Address",
-            "profile": [
-              "http://fhir.de/StructureDefinition/address-de-basis"
-            ]
-          }
-        ],
         "patternAddress": {
           "type": "postal"
         },
@@ -585,30 +437,6 @@
         "id": "Patient.address:Postfach.line",
         "path": "Patient.address.line",
         "min": 1,
-        "mustSupport": true
-      },
-      {
-        "id": "Patient.address:Postfach.line.extension:Strasse",
-        "path": "Patient.address.line.extension",
-        "sliceName": "Strasse",
-        "max": "0"
-      },
-      {
-        "id": "Patient.address:Postfach.line.extension:Hausnummer",
-        "path": "Patient.address.line.extension",
-        "sliceName": "Hausnummer",
-        "max": "0"
-      },
-      {
-        "id": "Patient.address:Postfach.line.extension:Adresszusatz",
-        "path": "Patient.address.line.extension",
-        "sliceName": "Adresszusatz",
-        "max": "0"
-      },
-      {
-        "id": "Patient.address:Postfach.line.extension:Postfach",
-        "path": "Patient.address.line.extension",
-        "sliceName": "Postfach",
         "mustSupport": true
       },
       {

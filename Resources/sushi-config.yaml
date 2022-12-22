@@ -11,6 +11,4 @@ publisher:
   url: https://www.gematik.de/
   email: info@gematik.de
 dependencies:
-  de.basisprofil.r4: 1.4.0
-  hl7.fhir.r4.core: 4.0.1
-  hl7.fhir.extensions.r5: 4.0.1
+  de.gematik.erezept-workflow.r4: 1.1.1
