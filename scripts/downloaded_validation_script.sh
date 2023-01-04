@@ -11,10 +11,11 @@ foldername='./Resources'
 external_dependency_folder="./ExternalDependencies"
 fhir_folder_path=~/.fhir/packages
 file=''
-install_dependencies="false"
 sort_results="false"
 proxy_active=true
 proxy_address="192.168.110.10:3128"
+declare -a dependencies
+folders_to_validate
 
 print_usage() {
   printf "Usage:
@@ -50,18 +51,28 @@ sortBySeverity() {
   fi
 }
 
-installDependencies() {
-  if [ $install_dependencies == "true" ]; then
-    readarray identityMappings < <(yq e '.dependencies' $foldername/sushi-config.yaml)
-    echo -e "${GREEN}[INFO] Installation of depencencies from '$foldername/sushi-config.yaml' has started...${NC}"
-    for dependency in "${identityMappings[@]}"; do
-      IFS=: read -r package version <<<"$dependency"
-      if [[ ${package:0:1} != "#" ]]; then
-        echo "[INFO] Installing $package with version $version"
+getDependencies() {
+  readarray dependencies < <(yq e '.dependencies' $foldername/sushi-config.yaml)
+}
+
+checkAndDownloadDependencies() {
+  getDependencies
+  folders_to_validate=" -ig $fhir_folder_path"
+  for dependency in "${dependencies[@]}"; do
+    IFS=: read -r package version <<<"$dependency"
+    if [[ ${package:0:1} != "#" ]]; then
+      version="${version// /}"
+      package_dir="$fhir_folder_path/$package#$version/package"
+      folders_to_validate+=" -ig ${package_dir}"
+      if [ -d "$package_dir" ]; then
+        # Take action if $DIR exists. #
+        echo "[INFO] Found $package with version $version in folder $package_dir"
+      else
+        echo "[INFO] Did not find $package with version $version in folder $package_dir"
         fhir install "$package" "$version"
       fi
-    done
-  fi
+    fi
+  done
 }
 
 renameFhirFolderToLowerCase() {
@@ -141,11 +152,6 @@ moveExternalDependencies() {
 runHapiValidator() {
   validatorversion_underscore=${validatorversion//./_}
   validatordestination=~/.fhir/validators/validator_cli_v$validatorversion_underscore.jar
-  # Concatenate folders_for_validation in fhir directory
-  folders_to_validate=" -ig $fhir_folder_path"
-  for package in $( (ls -d $fhir_folder_path/*/package)); do
-    folders_to_validate+=" -ig ${package}"
-  done
   # Proxy Settings
   proxy_string=""
   if [ $proxy_active == "true" ]; then
@@ -156,22 +162,21 @@ runHapiValidator() {
   if [ -z "$file" ]; then
     echo "[INFO] Validating files in folder '$foldername/fsh-generated/resources/' ..."
     # Run Validator on all *.json files in given directory
-    for filename in $(find $foldername/fsh-generated/resources/ -name '*.json'); do
+    for filename in $(find "$foldername"/fsh-generated/resources/ -name '*.json'); do
       f="$(basename "$filename")"
       resultfile=$outputfolder"/$f.html"
-
       echo -e "[INFO] \n\nProcessing file \033[1m $f \033[0m"
-      java -jar $validatordestination -version 4.0.1$folders_to_validate -ig $foldername/fsh-generated/resources $filename $proxy_string -jurisdiction DE -output $resultfile
+      java -jar "$validatordestination" -version 4.0.1 $folders_to_validate -ig $foldername/fsh-generated/resources $filename $proxy_string -jurisdiction DE -output $resultfile
       if [ $sort_results == "true" ]; then
         sortBySeverity "$resultfile"
       fi
     done
   else
     echo -e "Processing \033[1m $file \033[0m"
-    echo -e "\n\nProfiles to load for validation:  $folders_to_validate"
+    echo -e "\n\nProfiles to load for validation: $folders_to_validate"
     result_filename="$(basename "$file")"
     #   += "-ig $package/package"
-    java -jar $validatordestination -version 4.0.1$folders_to_validate -ig $foldername/fsh-generated/resources $file $proxy_string -jurisdiction DE -output $outputfolder"/$result_filename.html"
+    java -jar $validatordestination -version 4.0.1 $folders_to_validate -ig $foldername/fsh-generated/resources $file $proxy_string -jurisdiction DE -output $outputfolder"/$result_filename.html"
     if [ $sort_results == "true" ]; then
       sortBySeverity "$outputfolder""/$result_filename.html"
     fi
@@ -183,7 +188,6 @@ while getopts 'd:f:v:is' flag; do
   case "${flag}" in
   d) foldername="${OPTARG}" ;;
   f) file="${OPTARG}" ;;
-  i) install_dependencies="true" ;;
   s) sort_results="true" ;;
   v) validatorversion="${OPTARG}" ;;
   ?)
@@ -200,9 +204,9 @@ mkdir -p "$outputfolder"
 echo "[INFO] Validation output is written to '$outputfolder'"
 
 checkOrCreateConfigFile
-installDependencies
 renameFhirFolderToLowerCase
 checkAndDownloadHapiValidator
 runSushi
 moveExternalDependencies
+checkAndDownloadDependencies
 runHapiValidator
