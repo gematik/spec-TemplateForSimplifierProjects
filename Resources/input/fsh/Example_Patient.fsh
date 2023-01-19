@@ -109,31 +109,31 @@ Description: "Dieses Profil beschreibt die Nutzung von administrativen Patienten
 Instance: PatientinMusterfrau
 InstanceOf: ExamplePatient
 Usage: #example
-* identifier[0].type = $identifier-type-de-basis#GKV
-* identifier[=].system = "http://fhir.de/sid/gkv/kvid-10"
-* identifier[=].value = "A123456789"
-* identifier[+].type = $v2-0203#MR
-* identifier[=].system = "https://fhir.krankenhaus.example/NamingSystem/PID"
-* identifier[=].value = "TestPID"
-* identifier[+].use = #secondary
-* identifier[=].type = $identifier-type-de-basis#PKV
-* identifier[=].value = "1234567890"
-* identifier[=].assigner.display = "Test PKV AG"
+* identifier[VersichertenId-GKV].type = $identifier-type-de-basis#GKV
+* identifier[VersichertenId-GKV].system = "http://fhir.de/sid/gkv/kvid-10"
+* identifier[VersichertenId-GKV].value = "A123456789"
+* identifier[Patientennummer].type = $v2-0203#MR
+* identifier[Patientennummer].system = "https://fhir.krankenhaus.example/NamingSystem/PID"
+* identifier[Patientennummer].value = "TestPID"
+* identifier[Versichertennummer_PKV].use = #secondary
+* identifier[Versichertennummer_PKV].type = $identifier-type-de-basis#PKV
+* identifier[Versichertennummer_PKV].value = "1234567890"
+* identifier[Versichertennummer_PKV].assigner.display = "Test PKV AG"
 * active = true
-* name[0].use = #official
-* name[=].family = "Fürstin von Musterfrau"
+* name[Name].use = #official
+* name[Name].family = "Fürstin von Musterfrau"
   * extension[0].url = "http://fhir.de/StructureDefinition/humanname-namenszusatz"
   * extension[=].valueString = "Graf"
   * extension[+].url = "http://hl7.org/fhir/StructureDefinition/humanname-own-name"
   * extension[=].valueString = "Musterfrau"
   * extension[+].url = "http://hl7.org/fhir/StructureDefinition/humanname-own-prefix"
   * extension[=].valueString = "von"
-* name[=].given = "Erika"
-* name[=].prefix = "Dr."
+* name[Name].given = "Erika"
+* name[Name].prefix = "Dr."
   * extension.url = "http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier"
   * extension.valueCode = #AC
-* name[+].use = #maiden
-* name[=].family = "Gabler"
+* name[Geburtsname].use = #maiden
+* name[Geburtsname].family = "Gabler"
   * extension.url = "http://hl7.org/fhir/StructureDefinition/humanname-own-name"
   * extension.valueString = "Gabler"
 * gender = #female
