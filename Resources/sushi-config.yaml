@@ -4,8 +4,8 @@ FSHOnly: true
 applyExtensionMetadataToRoot: false
 version: # "1.0.0"
 # The following entries are only relevant if FSHOnly: false (i.e. IG publisher is used), otherwise sushi throws a warning
-# id: Implementierungsleitfaden gematik-Basismodul Stufe 1 1.0.0
-# name: Implementierungsleitfaden gematik-Basismodul Stufe 1 1.0.0
+# id:
+# name:
 # status: active
 # publisher:
 #   name: Gematik GmbH
