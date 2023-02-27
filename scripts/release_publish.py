@@ -61,19 +61,21 @@ def get_file_to_update_list():
     return file_list
 
 def locate_files_in_current_project(files: list):
+    return_list = []
     for current_file in files:
-
-        file_location = find_file(current_file.filename, "..")
+        file_location = find_file(current_file.filename, ".")
         if file_location is not None:
             current_file.set_file_location(file_location)
+            return_list.append(current_file)
         else:
             print(f"Warning: File '{current_file.filename}' not found.")
+    return return_list
 
 def find_file(name, path="."):
     for root, dirs, files in os.walk(path):
 
         if name in files:
-            print(f"Info: Searching for '{name}' in {root}.")
+            print(f"Info: Found '{name}' in {root}.")
             return os.path.join(root, name)
     return None
 
