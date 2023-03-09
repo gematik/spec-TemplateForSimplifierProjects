@@ -40,6 +40,7 @@ def get_file_to_update_list():
     file_list.append(FileWithVersionToUpdate('package.json', r'("version":\s*")([\d\.]+)(")'))
     file_list.append(FileWithVersionToUpdate('sushi-config.yaml', r'(version:\s*")(\d+\.\d+\.\d+)(")'))
     file_list.append(FileWithVersionToUpdate('ruleset.fsh', r'(\*\s*version\s*=\s*")([\d\.]+)(")'))
+    file_list.append(FileWithVersionToUpdate('Einfuehrung.md', r'(Version: \s*)(\d+\.\d+\.\d+)()'))
     return file_list
 
 
