@@ -2,6 +2,7 @@ import re
 import subprocess
 import os
 import argparse
+from datetime import date
 
 class FileWithVersionToUpdate:
     def __init__(self, filename, version_regex) -> None:
@@ -11,6 +12,26 @@ class FileWithVersionToUpdate:
 
     def set_file_location(self, location):
         self.location = location
+
+class FileWithDateToUpdate:
+    def __init__(self, filename, date_regex) -> None:
+        self.filename = filename
+        self.date_regex = date_regex
+        self.location = None
+
+    def set_file_location(self, location):
+        self.location = location
+
+# class FileWithDateToUpdate:
+#     def __init__(self, filename, date_regex, format) -> None:
+#         self.filename = filename
+#         self.date_regex = date_regex
+#         self.location = None
+#         self.format = format
+#     def set_file_location(self, location):
+#         self.location = location
+
+
 
 
 def get_new_release_version_from_branch_name() -> str:
@@ -35,12 +56,40 @@ def replace_version_in_file(file: FileWithVersionToUpdate,new_release_version: s
     with open(file.location, 'w') as output_file:
         output_file.write(output_text)
 
-def get_file_to_update_list():
+def replace_date_in_files(files : list, new_release_date: str):
+    if files is None:
+        print("Error: No Files found!")
+        return
+
+    for file in files:
+        replace_date_in_file(file,new_release_date)
+
+def replace_date_in_file(file: FileWithVersionToUpdate, new_date: str):
+    with open(file.location, 'r') as input_file:
+        input_text = input_file.read()
+
+    #output_text = re.sub(file.date_regex, rf'\g<1>{new_date.strftime(file.format)}\g<3>', input_text) #see https://www.programiz.com/python-programming/datetime#:~:text=Python%20format%20datetime&text=It%27s%20more%20common%20to%20use,()%20methods%20to%20handle%20this.
+    output_text = re.sub(file.date_regex, rf'\g<1>{new_date}\g<3>', input_text)
+    print(f"Info: Replaced date with '{new_date}' in file '{file.location}'.")
+
+    with open(file.location, 'w') as output_file:
+        output_file.write(output_text)
+
+def get_file_to_update_version_list():
     file_list = []
     file_list.append(FileWithVersionToUpdate('package.json', r'("version":\s*")([\d\.]+.*)(")'))
     file_list.append(FileWithVersionToUpdate('sushi-config.yaml', r'(version:\s*")(\d+\.\d+\.\d+.*)(")'))
     file_list.append(FileWithVersionToUpdate('ruleset.fsh', r'(\*\s*version\s*=\s*")([\d\.]+.*)(")'))
     file_list.append(FileWithVersionToUpdate('Einfuehrung.md', r'(Version: \s*)(\d+\.\d+\.\d+.*)()'))
+    return file_list
+
+def get_file_to_update_date_list():
+    file_list = []
+    #file_list.append(FileWithDateToUpdate('ruleset.fsh', r'(date\s*=\s*")(\d+\-\d+\-\d+)(")'), '%m/%d/%Y' )
+    #file_list.append(FileWithDateToUpdate('Einfuehrung.md', r'(Datum: \s*)(\d+\.\d+\.\d+)()') , '%m/%d/%Y')
+    file_list.append(FileWithDateToUpdate('ruleset.fsh', r'(\*\s*date\s*=\s*")(\d+\-\d+\-\d+)(")'))
+    file_list.append(FileWithDateToUpdate('ruleset.fsh', r'(\*\s*\^date\s*=\s*")(\d+\-\d+\-\d+)(")'))
+    file_list.append(FileWithDateToUpdate('Einfuehrung.md', r'(Datum:\s*)(\d+\.\d+\.\d+.*)()'))
     return file_list
 
 
@@ -85,10 +134,13 @@ def output_commit_messages_since_last_release():
         print("Warning: Failed to get commit messages.")
 
 def main():
+    today = date.today()
+
     parser = argparse.ArgumentParser(description='Update release version number')
     parser.add_argument('-b', '--branch', action='store_true', help='get new version from branch name')
     parser.add_argument('-v', '--version', type=str, help='specify new version number')
     parser.add_argument('-o', '--output', action='store_true', help='output commit messages since last release')
+    # TODO new argument -d if not date_time now
 
     args = parser.parse_args()
 
@@ -102,9 +154,13 @@ def main():
     if args.output:
         output_commit_messages_since_last_release()
 
-    file_to_update_list = get_file_to_update_list()
-    file_list = locate_files_in_current_project(file_to_update_list)
-    replace_version_in_files(file_list, new_release_version)
+    file_to_update_version_list = get_file_to_update_version_list()
+    file_version_list = locate_files_in_current_project(file_to_update_version_list)
+    replace_version_in_files(file_version_list, new_release_version)
+
+    file_to_update_date_list = get_file_to_update_date_list()
+    file_date_list = locate_files_in_current_project(file_to_update_date_list)
+    replace_date_in_files(file_date_list, today)
 
 if __name__ == "__main__":
     main()
