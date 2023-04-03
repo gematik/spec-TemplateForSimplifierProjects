@@ -79,11 +79,14 @@ def get_file_to_update_version_list():
     file_list = []
     file_list.append(FileWithVersionToUpdate('package.json', r'("version":\s*")([\d\.]+.*)(")'))
     file_list.append(FileWithVersionToUpdate('sushi-config.yaml', r'(version:\s*")(\d+\.\d+\.\d+.*)(")'))
+    # TODo furtther line: file_list.append(FileWithVersionToUpdate('sushi-config.yaml', r'(id: Implementierungsleitfaden ISiK-Basismodul Stufe 3\s*")(\d+\.\d+\.\d+.*)(")'))
+    # TODo furtther line: file_list.append(FileWithVersionToUpdate('sushi-config.yaml', r'(name: Implementierungsleitfaden ISiK-Basismodul Stufe 3\s*")(\d+\.\d+\.\d+.*)(")'))
     file_list.append(FileWithVersionToUpdate('ruleset.fsh', r'(\*\s*version\s*=\s*")([\d\.]+.*)(")'))
     file_list.append(FileWithVersionToUpdate('ruleset.fsh', r'(\*\s*\^version\s*=\s*")([\d\.]+.*)(")'))
     file_list.append(FileWithVersionToUpdate('Einfuehrung.md', r'(Version: \s*)(\d+\.\d+\.\d+.*)()'))
     file_list.append(FileWithVersionToUpdate('ImplementierungsleitfadenIsiK_basismodul.json', r'("version":\s*")([\d\.]+.*)(")'))
     file_list.append(FileWithVersionToUpdate('ImplementierungsleitfadenIsiK_Terminplanung.json', r'("version":\s*")([\d\.]+.*)(")'))
+
     return file_list
 
 def get_file_to_update_date_list():
