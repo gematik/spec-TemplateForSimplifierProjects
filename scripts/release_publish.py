@@ -83,6 +83,7 @@ def get_file_to_update_version_list():
     # TODo furtther line: file_list.append(FileWithVersionToUpdate('sushi-config.yaml', r'(name: Implementierungsleitfaden ISiK-Basismodul Stufe 3\s*")(\d+\.\d+\.\d+.*)(")'))
     file_list.append(FileWithVersionToUpdate('ruleset.fsh', r'(\*\s*version\s*=\s*")([\d\.]+.*)(")'))
     file_list.append(FileWithVersionToUpdate('ruleset.fsh', r'(\*\s*\^version\s*=\s*")([\d\.]+.*)(")'))
+    #TODO for ruleset : * implementationGuide = "https://gematik.de/fhir/isik/v3/Basismodul/ImplementationGuide|3.0.0-rc1"
     file_list.append(FileWithVersionToUpdate('Einfuehrung.md', r'(Version: \s*)(\d+\.\d+\.\d+.*)()'))
     file_list.append(FileWithVersionToUpdate('ImplementierungsleitfadenIsiK_basismodul.json', r'("version":\s*")([\d\.]+.*)(")'))
     file_list.append(FileWithVersionToUpdate('ImplementierungsleitfadenIsiK_Terminplanung.json', r'("version":\s*")([\d\.]+.*)(")'))
