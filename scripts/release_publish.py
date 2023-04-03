@@ -89,7 +89,7 @@ def get_file_to_update_version_list():
 def get_file_to_update_date_list():
     file_list = []
     #file_list.append(FileWithDateToUpdate('ruleset.fsh', r'(date\s*=\s*")(\d+\-\d+\-\d+)(")'), '%m/%d/%Y' )
-    #file_list.append(FileWithDateToUpdate('Einfuehrung.md', r'(Datum: \s*)(\d+\.\d+\.\d+)()') , '%m/%d/%Y')
+    #file_list.append(FileWithDateToUpdate('Einfuehrung.md', r'(Datum: \s*)(\d+\.\d+\.\d+)()') , '%m/%d/%Y') TODO  Ziel-Formatierung beachten in TT.MM.JJJJ
     file_list.append(FileWithDateToUpdate('ruleset.fsh', r'(\*\s*date\s*=\s*")(\d+\-\d+\-\d+)(")'))
     file_list.append(FileWithDateToUpdate('ruleset.fsh', r'(\*\s*\^date\s*=\s*")(\d+\-\d+\-\d+)(")'))
     file_list.append(FileWithDateToUpdate('Einfuehrung.md', r'(Datum:\s*)(\d+\.\d+\.\d+.*)()'))
