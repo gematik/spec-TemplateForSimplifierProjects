@@ -1,8 +1,11 @@
+import datetime
 import re
 import subprocess
 import os
 import argparse
 from datetime import date
+import yaml
+
 
 class FileWithVersionToUpdate:
     def __init__(self, filename, version_regex) -> None:
@@ -13,26 +16,16 @@ class FileWithVersionToUpdate:
     def set_file_location(self, location):
         self.location = location
 
+
+
 class FileWithDateToUpdate:
-    def __init__(self, filename, date_regex) -> None:
+    def __init__(self, filename, date_regex, format) -> None:
         self.filename = filename
         self.date_regex = date_regex
         self.location = None
-
+        self.format = format
     def set_file_location(self, location):
         self.location = location
-
-# class FileWithDateToUpdate:
-#     def __init__(self, filename, date_regex, format) -> None:
-#         self.filename = filename
-#         self.date_regex = date_regex
-#         self.location = None
-#         self.format = format
-#     def set_file_location(self, location):
-#         self.location = location
-
-
-
 
 def get_new_release_version_from_branch_name() -> str:
     git_branch = subprocess.check_output(['git', 'rev-parse', '--abbrev-ref', 'HEAD']).strip().decode()
@@ -56,7 +49,7 @@ def replace_version_in_file(file: FileWithVersionToUpdate,new_release_version: s
     with open(file.location, 'w') as output_file:
         output_file.write(output_text)
 
-def replace_date_in_files(files : list, new_release_date: str):
+def replace_date_in_files(files : list, new_release_date: datetime):
     if files is None:
         print("Error: No Files found!")
         return
@@ -64,12 +57,11 @@ def replace_date_in_files(files : list, new_release_date: str):
     for file in files:
         replace_date_in_file(file,new_release_date)
 
-def replace_date_in_file(file: FileWithVersionToUpdate, new_date: str):
+def replace_date_in_file(file: FileWithVersionToUpdate, new_date: datetime):
     with open(file.location, 'r') as input_file:
         input_text = input_file.read()
 
-    #output_text = re.sub(file.date_regex, rf'\g<1>{new_date.strftime(file.format)}\g<3>', input_text) #see https://www.programiz.com/python-programming/datetime#:~:text=Python%20format%20datetime&text=It%27s%20more%20common%20to%20use,()%20methods%20to%20handle%20this.
-    output_text = re.sub(file.date_regex, rf'\g<1>{new_date}\g<3>', input_text)
+    output_text = re.sub(file.date_regex, rf'\g<1>{new_date.strftime(file.format)}\g<3>', input_text)
     print(f"Info: Replaced date with '{new_date}' in file '{file.location}'.")
 
     with open(file.location, 'w') as output_file:
@@ -87,16 +79,13 @@ def get_file_to_update_version_list():
     file_list.append(FileWithVersionToUpdate('Einfuehrung.md', r'(Version: \s*)(\d+\.\d+\.\d+.*)()'))
     file_list.append(FileWithVersionToUpdate('ImplementierungsleitfadenIsiK_basismodul.json', r'("version":\s*")([\d\.]+.*)(")'))
     file_list.append(FileWithVersionToUpdate('ImplementierungsleitfadenIsiK_Terminplanung.json', r'("version":\s*")([\d\.]+.*)(")'))
-
     return file_list
 
 def get_file_to_update_date_list():
     file_list = []
-    #file_list.append(FileWithDateToUpdate('ruleset.fsh', r'(date\s*=\s*")(\d+\-\d+\-\d+)(")'), '%m/%d/%Y' )
-    #file_list.append(FileWithDateToUpdate('Einfuehrung.md', r'(Datum: \s*)(\d+\.\d+\.\d+)()') , '%m/%d/%Y') TODO  Ziel-Formatierung beachten in TT.MM.JJJJ
-    file_list.append(FileWithDateToUpdate('ruleset.fsh', r'(\*\s*date\s*=\s*")(\d+\-\d+\-\d+)(")'))
-    file_list.append(FileWithDateToUpdate('ruleset.fsh', r'(\*\s*\^date\s*=\s*")(\d+\-\d+\-\d+)(")'))
-    file_list.append(FileWithDateToUpdate('Einfuehrung.md', r'(Datum:\s*)(\d+\.\d+\.\d+.*)()'))
+    file_list.append(FileWithDateToUpdate('ruleset.fsh', r'(\*\s*date\s*=\s*")(\d+\-\d+\-\d+)(")','%Y-%m-%d'))
+    file_list.append(FileWithDateToUpdate('ruleset.fsh', r'(\*\s*\^date\s*=\s*")(\d+\-\d+\-\d+)(")','%Y-%m-%d'))
+    file_list.append(FileWithDateToUpdate('Einfuehrung.md', r'(Datum:\s*)(\d+\.\d+\.\d+.*)()','%d.%m.%Y'))
     return file_list
 
 
@@ -141,13 +130,11 @@ def output_commit_messages_since_last_release():
         print("Warning: Failed to get commit messages.")
 
 def main():
-    today = date.today()
-
     parser = argparse.ArgumentParser(description='Update release version number')
     parser.add_argument('-b', '--branch', action='store_true', help='get new version from branch name')
     parser.add_argument('-v', '--version', type=str, help='specify new version number')
     parser.add_argument('-o', '--output', action='store_true', help='output commit messages since last release')
-    # TODO new argument -d if not date_time now
+    parser.add_argument('-d', '--datetime', type=str, help='specify custom datetime for release')
 
     args = parser.parse_args()
 
@@ -158,6 +145,12 @@ def main():
     else:
         parser.error('No new release version specified. Please use either -v or -b to specify the new release version.')
 
+    if args.datetime:
+        custom_date = datetime.datetime.strptime(args.datetime, '%d.%m.%Y').date()
+        # Use custom_date instead of today
+    else:
+        custom_date = date.today()
+
     if args.output:
         output_commit_messages_since_last_release()
 
@@ -167,7 +160,7 @@ def main():
 
     file_to_update_date_list = get_file_to_update_date_list()
     file_date_list = locate_files_in_current_project(file_to_update_date_list)
-    replace_date_in_files(file_date_list, today)
+    replace_date_in_files(file_date_list, custom_date)
 
 if __name__ == "__main__":
     main()
