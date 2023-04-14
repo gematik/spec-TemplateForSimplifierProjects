@@ -35,6 +35,8 @@ Finally you will need to
 # Usage <a name = "usage"></a>
 Information about using the validator can be found in [usage page](./USAGE.md).
 
+# Release Script
+The template provides you with a  [release script](./RELEASE_SCRIPT.md) to update the release version number and date in specified files within a project. It reads a configuration file in YAML format, which contains the information on which files and patterns to update.
 # Help
 
 If you find issues with this template project, please leave an issue or create a Pull Request via  the [template repository](https://github.com/gematik/spec-TemplateForSimplifierProjects).
