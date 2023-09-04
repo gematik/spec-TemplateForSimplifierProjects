@@ -6,58 +6,62 @@ labels: [
 ]
 body:
   - type: input
-    id: start_date
+    id: target_date
     attributes:
-      label: "Start Date"
-      description: Start of development
-      placeholder: "month/day/year"
+      label: "Target Date"
+      description: When would you need this feature to be available?
+      placeholder: "MM YYYY"
     validations:
       required: false
-  - type: textarea
+  - type: input
     id: implementation_pr
     attributes:
       label: "Implementation PR"
-      description: Pull request used
-      placeholder: "#Pull Request ID"
+      description: In case you already developed the feature yourself, please tell us the corresponding PR. Also, maybe you have seen this feature somewhere else?
+      placeholder: "Your Pull Request ID or link to a similar PR."
     validations:
       required: false
   - type: textarea
     id: reference_issues
     attributes:
       label: "Reference Issues"
-      description: Common issues
-      placeholder: "#Issues IDs"
+      description: Some common issues this feature would address.
+      placeholder: "Issues IDs and references"
     validations:
       required: false
   - type: textarea
     id: summary
     attributes:
       label: "Summary"
-      description: Provide a brief explanation of the feature
-      placeholder: Describe in a few lines your feature request
+      description: Please provide a brief explanation of the feature.
+      placeholder: Describe in a few lines your feature request.
     validations:
       required: true
   - type: textarea
     id: basic_example
     attributes:
-      label: "Basic Example"
-      description: Indicate here some basic examples of your feature.
-      placeholder: A few specific words about your feature request.
+      label: "Common Examples"
+      description: Indicate some basic examples of your feature or a common flow in which it would be used.
+      placeholder: |
+        In the use case of '...'
+        The necessary data will flow like '....'
+        Feature will be used '....'
+        With the result of '....'
     validations:
       required: true
   - type: textarea
     id: drawbacks
     attributes:
       label: "Drawbacks"
-      description: What are the drawbacks/impacts of your feature request ?
-      placeholder: Identify the drawbacks and impacts while being neutral on your feature request
+      description: What are the drawbacks or mutual impacts of your feature request?
+      placeholder: Identify the drawbacks and mutual impacts with respect to other features.
     validations:
       required: true
   - type: textarea
-    id: unresolved_question
+    id: unadress_question
     attributes:
-      label: "Unresolved questions"
-      description: What questions still remain unresolved ?
-      placeholder: Identify any unresolved issues.
+      label: "Unadressed questions"
+      description: What issues or questions still remain unadressed?
+      placeholder: Identify any unresolved issues or questions.
     validations:
       required: false

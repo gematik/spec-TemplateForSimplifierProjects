@@ -9,7 +9,7 @@ body:
     id: description
     attributes:
       label: "Description"
-      description: Please enter an explicit description of the issue
+      description: Please enter an explicit description of the issue.
       placeholder: Short and explicit description of the incident...
     validations:
       required: true
@@ -21,13 +21,21 @@ body:
       placeholder: ex. https://simplifier.net/REPO-NAME/RESOURCE-NAME
     validations:
       required: true
+  - type: input
+    id: version
+    attributes:
+      label: "Version or Branch"
+      description: If this bug occures only in a specific version or development branch, please tell us here.
+      placeholder: ex. Only occurs with ISiK 2.0.4.
+    validations:
+      required: false
   - type: textarea
     id: reprod
     attributes:
-      label: "Reproduction steps"
+      label: "Reproduction Steps"
       description: Please enter a step by step description of the issue.
       value: |
-        1. At the interface '...'
+        1. At the interface '....'
         2. With Data '....'
         3. Execute Operation '....'
         4. See error
@@ -37,7 +45,7 @@ body:
   - type: textarea
     id: logs
     attributes:
-      label: "Stack trace and logs"
+      label: "Stack Trace and Logs"
       description: Please copy and paste any relevant stack trace or log output. This will be automatically formatted into code.
       render: bash
     validations:
@@ -55,7 +63,7 @@ body:
   - type: textarea
     id: environment
     attributes:
-      label: "Software and Envirmoment"
+      label: "Software and Environment"
       description: Please describe the used software and your environment further.
       placeholder: ex. I Use dotnet sdk 4.x and Firely Terminal to manage fhir packages
     validations:
