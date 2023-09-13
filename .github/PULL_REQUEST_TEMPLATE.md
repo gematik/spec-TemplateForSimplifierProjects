@@ -27,4 +27,4 @@
 <!--- If you're unsure about any of these, don't hesitate to ask. We're here to help! -->
 - [ ] My code follows the code style of this IG / specification.
 - [ ] My change requires a change to the documentation or narrative (intend) of the IG.
-- [ ] I have already updated the documentation / narrative (itend) accordingly.
+- [ ] I have already updated the documentation / narrative (intend) accordingly.
