@@ -11,7 +11,11 @@ body:
     attributes:
       label: "Description"
       description: Please enter an explicit description of the issue.
-      placeholder: Short and explicit description of the incident...
+      placeholder: |
+                  Short and explicit description of the incident...
+                  If you are able to specify, please also select the appropriate label:
+                  - Bug, if something is technically not working, e.g. not compiling.
+                  - Invalid, if something is technically working but does not seem to yield to correct outcome, e.g. 1+1 is 3.
     validations:
       required: true
   - type: input
@@ -36,6 +40,7 @@ body:
       label: "Reproduction Steps"
       description: Please enter a step by step description of the issue.
       value: |
+
         1. At the interface '....'
         2. With Data '....'
         3. Execute Operation '....'
