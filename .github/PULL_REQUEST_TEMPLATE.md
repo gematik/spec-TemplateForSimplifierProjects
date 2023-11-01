@@ -1,3 +1,7 @@
+Please go the the `Preview` tab and select the appropriate sub-template:
+
+* [Group A](?expand=1&template=PR_Template_VersionUpgrade.md)
+* [Group B](?expand=1&template=group_b_template.md)
 <!--- Provide a general summary of your changes in the Title above -->
 
 ## Description
