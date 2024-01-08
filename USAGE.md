@@ -1,74 +1,20 @@
 ## Usage <a name = "usage"></a>
 
 ### Installing FHIR tools on your local machine
-**_NOTE:_** If you are using a ['box.fhir' Devbox](https://gitlab.prod.ccs.gematik.solutions/git/Verwaltung/Entwicklungsumgebung/devbox) you should have the neccessary dependencies already installed and this step can be skipped.
+To set up a development environment with support for FHIR profile compilation and validation:
 
-Otherwise, the following script installs all necessary tools for specifying fhir resources onto your local machine.
+1. Ensure you have [Docker](https://www.docker.com/products/docker-desktop) installed on your machine.
+2. Clone the repository and open it in [Visual Studio Code](https://code.visualstudio.com/).
+3. When prompted, reopen the project in a container. This will build the Docker container based on the provided `Dockerfile`.
+4. The container includes:
+   - [Firely Terminal](https://fire.ly/products/firely-terminal/) for FHIR operations.
+   - [SUSHI](https://fshschool.org/docs/sushi/) for compiling FHIR Shorthand (FSH) files.
+   - [HAPI FHIR Validator](https://github.com/hapifhir/hapi-fhir/releases) for validating FHIR profiles.
+5. The [`codfsh` VS Code extension](https://marketplace.visualstudio.com/items?itemName=gematikde.codfsh) is also installed in the container for an enhanced FHIR profile development experience.
+6. Once the container is built and running, you can use the integrated terminal in VS Code to run SUSHI and the HAPI FHIR Validator.
 
-```bash
-./scripts/install_fhir_tools.sh
-```
-(requires admin privileges)
+Note: The `codfsh` extension settings are pre-configured in the [`.devcontainer/devcontainer.json`](https://code.visualstudio.com/docs/devcontainers/containers) file to use the correct paths for the HAPI Validator and its configuration.
 
-### Run Validation
-
-Run script `validate.sh` to
-
-1. Run sushi FHIR Files generator
-2. Validate all files in the `./Resources` folder
-3. Get a html output file for each FHIR file in `../validation_results/`
-
-You can use following script options
-
-### Install dependencies from sushi-config.yaml
-
-`-i` installs dependencies with firely.terminal from `./<foldername>/sushi-config.yaml` file
-
-```bash
-./validate.sh -i
-```
-
-### Sort resulting html files into severity folders
-
-`-s` sorts resulting html files in folders by the severities of the findings.
-Categories are: `error`, `warning`, `information` and `unknown`
-
-```bash
-./validate.sh -s
-```
-
-### Change default folder
-
-`-d foldername` sets foldername for validation. Default is: `./Resources`
-
-```bash
-validate.sh -d ./Testresources
-```
-
-### Process single file
-
-`-f filename` sets filename for single validation.
-
-```bash
-validate.sh -f ./Resources/fsh-generated/resources/myProfile.json
-```
-
-### Work with specific version of Hapi Validator
-
-`-v version` defines a version od the used Hapi Validator. If the specified version of the hapi validator is not present the default will be used. Validator-JARs will be downloaded to ~/.fhir/validators/.
-
-```bash
-validate.sh -v 5.6.70
-```
-### Changing of proxy settings
-On the first run a config file with the standard proxy settings used by the gematik is created and saved in the scripts folder with the name 'validation_script-config.yaml'.
-```yaml
-proxy:
-  active: true
-  address: 192.168.110.10:3128
-```
-If you want to deactivate the usage of the proxy, set active to 'false'. Or change the ip address if you need another proxy address.
-.
 # Help
 
 If you find issues with this template project, please leave an issue or create a Pull Request via  the [template repository](https://github.com/gematik/spec-TemplateForSimplifierProjects).

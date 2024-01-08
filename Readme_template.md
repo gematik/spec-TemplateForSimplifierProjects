@@ -20,7 +20,6 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -35,34 +34,23 @@ This Repo contains the fsh files to the published \${fhir_name} files on <https:
 See [ReleaseNotes.md](./ReleaseNotes.md) for all information regarding the (newest) releases.
   
 ### Prerequisites
-1. Clone this project to your local machine.
-2. Run the install script once.
-3. Work on teh FHIR Profiles build and validate them with the given script.
+Clone this project to your local machine.
+
  
-### Installation
-To install the necessary tools run
+## Installation
+To set up a development environment with support for FHIR profile compilation and validation:
 
-```bash
-sudo ./install_fhir_tools.sh
-```
+1. Ensure you have [Docker](https://www.docker.com/products/docker-desktop) installed on your machine.
+2. Clone the repository and open it in [Visual Studio Code](https://code.visualstudio.com/).
+3. When prompted, reopen the project in a container. This will build the Docker container based on the provided `Dockerfile`.
+4. The container includes:
+   - [Firely Terminal](https://fire.ly/products/firely-terminal/) for FHIR operations.
+   - [SUSHI](https://fshschool.org/docs/sushi/) for compiling FHIR Shorthand (FSH) files.
+   - [HAPI FHIR Validator](https://github.com/hapifhir/hapi-fhir/releases) for validating FHIR profiles.
+5. The [`codfsh` VS Code extension](https://marketplace.visualstudio.com/items?itemName=gematikde.codfsh) is also installed in the container for an enhanced FHIR profile development experience.
+6. Once the container is built and running, you can use the integrated terminal in VS Code to run SUSHI and the HAPI FHIR Validator.
 
-This will install
-
-- Java SDK 17 JRE
-- Sushi from <https://github.com/FHIR/sushi>
-- dotnet-sdk-3.1
-- firely.terminal
-- yq yaml-parser
-
-After successfull installation run:
-
-```bash
-./validate.sh -is
-```
-See `../validation_results/` for results.
- 
-## Usage
-See [Usage.md](./USAGE.md)
+Note: The `codfsh` extension settings are pre-configured in the [`.devcontainer/devcontainer.json`](https://code.visualstudio.com/docs/devcontainers/containers) file to use the correct paths for the HAPI Validator and its configuration.
  
 ## Contributing
 If you want to contribute, please check our [CONTRIBUTING.md](./CONTRIBUTING.md).

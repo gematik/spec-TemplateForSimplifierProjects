@@ -33,7 +33,7 @@ Finally you will need to
 * populate the new README.md with information for your repository
 
 # Usage <a name = "usage"></a>
-Information about using the validator can be found in [usage page](./USAGE.md).
+Information about using the preconfigured devontainer including sushi, hapi validator and the codfsh-Extension can be found in [usage page](./USAGE.md).
 
 # Help
 
