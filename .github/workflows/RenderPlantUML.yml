@@ -4,7 +4,7 @@ on:
   push:
     paths:
     - '**/Material/imgsrc/**/*.puml'
- 
+    
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -43,5 +43,5 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add -A
-          git commit -m "Add rendered PlantUML diagrams" || exit 0
+          git commit -m "Add rendered PlantUML to SVG diagrams" || exit 0
           git push
