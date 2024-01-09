@@ -27,8 +27,8 @@ jobs:
           directories=$(find . -path "*/imgsrc/*/*.puml" -exec dirname {} \; | sort -u)
           for dir in $directories; do
             # Generate the corresponding out directory path
-            out_dir=${ImplementationGuide/diagrams}
-            mkdir --parents $out_dir
+            out_dir=ImplementationGuide/diagrams
+            mkdir -p $out_dir
  
             # Render SVGs from PUMLs
             find $dir -name "*.puml" -exec java -jar plantuml.jar -tsvg {} \;
