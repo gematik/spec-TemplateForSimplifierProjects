@@ -1,3 +1,5 @@
+![Include Gematik Logo](ImplementationGuide/images/Gematik_Logo_Flag.png)
+
 # About
 This template standardizes the development of fhir resources with .fsh resources. It should reduce time for setup and ease the development process.
 
