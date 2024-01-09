@@ -37,10 +37,18 @@ jobs:
             find $dir -name "*.svg" -exec mv {} $out_dir \;
           done
  
-      - name: Commit and push
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add -A
-          git commit -m "Add rendered PlantUML to SVG diagrams" || exit 0
-          git push
+
+       # add and commit the new generated files
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          commit-message: Generated Images from source Code by GitHub Action
+          reviewer: ${{ github.actor }}
+
+      #- name: Commit and push
+      #  run: |
+      #    git config --local user.email "action@github.com"
+      #    git config --local user.name "GitHub Action"
+      #    git add -A
+      #    git commit -m "Add rendered PlantUML to SVG diagrams" || exit 0
+      #    git push

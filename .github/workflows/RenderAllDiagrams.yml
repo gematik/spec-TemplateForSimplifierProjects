@@ -72,7 +72,6 @@ jobs:
           imagedir=ImplementationGuide/images/diagrams
           cp -RT ./Material/imgsrc/drawio/ $imagedir
           find $imagedir -name '*.drawio' -exec rm -rv {} \;
-          tree ./images
       
       # add and commit the new generated files
       - name: Create Pull Request
