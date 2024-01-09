@@ -2,11 +2,12 @@ name: Render PlantUML diagrams
  
 on:
   push:
-    branches: 
-    - '**'
     paths:
     - '**/Material/imgsrc/**/*.puml'
  
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -42,5 +43,5 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add -A
-          git commit -m "Add rendered SVG diagrams" || exit 0
+          git commit -m "Add rendered PlantUML diagrams" || exit 0
           git push
