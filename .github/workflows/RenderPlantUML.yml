@@ -1,0 +1,46 @@
+name: Render PlantUML diagrams
+ 
+on:
+  push:
+    paths:
+    - '**/Material/imgsrc/**/*.puml'
+    
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+ 
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+ 
+      - name: Install dependencies
+        run: |
+          sudo apt-get install -y graphviz
+          wget -O plantuml.jar "https://github.com/plantuml/plantuml/releases/download/lastest/plantuml.jar" 
+ 
+      - name: Render and Move SVG files
+        run: |
+          # Find all unique directories containing *.puml files under any /imgsrc/ folder
+          directories=$(find . -path "*/imgsrc/*/*.puml" -exec dirname {} \; | sort -u)
+          for dir in $directories; do
+            # Generate the corresponding out directory path
+            out_dir=ImplementationGuide/diagrams
+            mkdir -p $out_dir
+ 
+            # Render SVGs from PUMLs
+            find $dir -name "*.puml" -exec java -jar plantuml.jar -tsvg {} \;
+ 
+            # Move SVGs to out directory
+            find $dir -name "*.svg" -exec mv {} $out_dir \;
+          done
+ 
+      - name: Commit and push
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add -A
+          git commit -m "Add rendered PlantUML to SVG diagrams" || exit 0
+          git push
