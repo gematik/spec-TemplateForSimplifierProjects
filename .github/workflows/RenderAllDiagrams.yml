@@ -66,7 +66,7 @@ jobs:
       - name: Move SVGs to target image folder
         run: |
           img_dir=ImplementationGuide/images/diagrams
-        # Find all unique directories containing *.svg files under any /imgsrc/ folder
+          # Find all unique directories containing *.svg files under any /imgsrc/ folder
           FileNamePaths=$(find . -path "*/imgsrc/*/*.svg" -exec dirname {} \; | sort -u)
           for dir in $FileNamePaths
           do
