@@ -67,7 +67,7 @@ jobs:
         run: |
           img_dir=ImplementationGuide/images/diagrams
           inp_dir1=./Material/imgsrc/drawio/
-          inp_dir2=./Material/imgsrc/puml/
+          inp_dir2=./Material/imgsrc/pantuml/
           find $inp_dir1 -name "*.svg" -exec mv {} $img_dir \;
           find $inp_dir2 -name "*.svg" -exec mv {} $img_dir \;
       
