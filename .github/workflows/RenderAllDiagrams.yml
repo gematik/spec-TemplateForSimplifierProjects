@@ -17,7 +17,7 @@ jobs:
       
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # Installs Java distribution for running the plantUML jar
       - name: Install Java
@@ -34,7 +34,7 @@ jobs:
       # Download plantUML jar 
       - name: Download plantuml file
         run: |
-          wget -O plantuml.jar "https://github.com/plantuml/plantuml/releases/download/lastest/plantuml.jar" 
+          wget -O plantuml.jar "https://github.com/plantuml/plantuml/releases/latest/download/plantuml.jar" 
                                 
        # Clean Folder
       - name: Ensure and clean folder
