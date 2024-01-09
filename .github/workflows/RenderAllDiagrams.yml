@@ -77,8 +77,9 @@ jobs:
       # add and commit the new generated files
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
-        commit-message: Generated Images from source Code by GitHub Action
         reviewers: ${GITHUB_ACTOR}
+        commit-message: Generated Images from source Code by GitHub Action
+        
 
       #- name: Commit and push
       #  run: |
