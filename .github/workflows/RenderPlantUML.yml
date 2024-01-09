@@ -46,7 +46,7 @@ jobs:
           commit-message: Generated Images from source Code by GitHub Action
           title: Generated Images from GitHub Action
           assignees: ${{ github.actor }}
-          reviewer: ${{ github.actor }}
+          reviewers: ${{ github.actor }}
 
       #- name: Commit and push
       #  run: |

@@ -39,22 +39,18 @@ jobs:
        # Clean Folder
       - name: Ensure and clean folder
         run: |
-          imagedir=ImplementationGuide/diagrams
-          mkdir -p $imagedir
+          img_dir=ImplementationGuide/diagrams
+          mkdir -p $img_dir
           rm -rf ImplementationGuide/diagrams/*.svg
 
       # Generate the SVGs from PUML
       - name: Render PUML to SVG and Move files
         run: |
-          imagedir=ImplementationGuide/diagrams
           FileNamePaths=$(find . -path "*/imgsrc/*/*.puml" -exec dirname {} \; | sort -u)
           for dir in $FileNamePaths
           do
             # Render SVGs from PUMLs
             find $dir -name "*.puml" -exec java -jar plantuml.jar -tsvg {} \;
- 
-            # Move SVGs to out directory
-            find $dir -name "*.svg" -exec mv {} $out_dir \;
           done
 
       # Generate the SVGs from DrawIO
@@ -67,11 +63,13 @@ jobs:
           action-mode: all
 
       # copies the created png & svg files to the images/diagrams folder and deletes the drawio files
-      - name: Copy draw io
+      - name: Move SVGs to target image folder
         run: |
-          imagedir=ImplementationGuide/images/diagrams
-          cp -RT ./Material/imgsrc/drawio/ $imagedir
-          find $imagedir -name '*.drawio' -exec rm -rv {} \;
+          img_dir=ImplementationGuide/images/diagrams
+          inp_dir1=./Material/imgsrc/drawio/
+          inp_dir2=./Material/imgsrc/puml/
+          find $inp_dir1 -name "*.svg" -exec mv {} $img_dir \;
+          find $inp_dir2 -name "*.svg" -exec mv {} $img_dir \;
       
       # add and commit the new generated files
       - name: Create Pull Request
@@ -81,7 +79,7 @@ jobs:
           commit-message: Generated Images from source Code by GitHub Action
           title: Generated Images from GitHub Action
           assignees: ${{ github.actor }}
-          reviewer: ${{ github.actor }}
+          reviewers: ${{ github.actor }}
       #- name: Commit and push
       #  run: |
       #    git config --local user.email "action@github.com"
