@@ -16,14 +16,15 @@ jobs:
     steps:
       
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
       # Installs Java distribution for running the plantUML jar
       - name: Install Java
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
-          java-version: '11'
+          java-version: '17'
           check-latest: true
       
       # Install graphviz for plantuml     
@@ -33,58 +34,34 @@ jobs:
       # Download plantUML jar 
       - name: Download plantuml file
         run: |
-          wget -O plantuml.jar "https://github.com/plantuml/plantuml/releases/download/v1.2023.10/plantuml-1.2023.10.jar" 
+          wget -O plantuml.jar "https://github.com/plantuml/plantuml/releases/download/lastest/plantuml.jar" 
                                 
-      # Runs a single command using the runners shell
-      - name: Generate images
+       # Clean Folder
+      name: Ensure and clean folder
         run: |
-          imagedir=ImplementationGuide/images/diagrams
+          imagedir=ImplementationGuide/diagrams
           mkdir -p $imagedir
-          rm -rf ImplementationGuide/images/diagrams/*
-          for fullname in $(find Material/imgsrc/plantuml/ -type f -name '*.puml')
+          rm -rf ImplementationGuide/diagrams/*.svg
+
+      # Generate the SVGs from PUML
+      - name: Render PUML to SVG and Move files
+        run: |
+          imagedir=ImplementationGuide/diagrams
+          FileNamePaths=$(find . -path "*/imgsrc/*/*.puml" -exec dirname {} \; | sort -u)
+          for dir in $FileNamePaths
           do
-              echo "Fullname: ${fullname}"
-              base=$(basename "${fullname}" .puml)
-              dir=$(dirname $fullname)
-              echo "Basename: ${base}"
-              outdir=$(dirname $fullname | sed s+src/plantuml+${imagedir}+)
-              echo "Outdir: ${outdir}"
-              mkdir -p $outdir
-              plantoutdir="${PWD}/${outdir}"
-              echo "PlantOutdir: ${plantoutdir}"
-              
-              # PlantUML arguments:
-              # -v for verbose output (Debugging)
-              # -checkmetadata checks whether the target png/svg has the same source
-              # and if there are no changes, doesn't regenerate the image file
-              # -o sets the output folder for the png/svg files
-              plantargs="-v -checkmetadata -o ${plantoutdir} ${fullname}"
-              
-              # separate calls are needed, because only one file type can be set
-              # per call
-              java -jar plantuml.jar -tpng ${plantargs} 
-              java -jar plantuml.jar -tsvg ${plantargs}
-
-              # method with pipes
-              #cat "${fullname}" | java -jar plantuml.jar -p -tpng -checkmetadata  > "${outdir}/${base}.png"
-              #cat "${fullname}" | java -jar plantuml.jar -p -tsvg -checkmetadata  > "${outdir}/${base}.svg"
+            # Render SVGs from PUMLs
+            find $dir -name "*.puml" -exec java -jar plantuml.jar -tsvg {} \;
+ 
+            # Move SVGs to out directory
+            find $dir -name "*.svg" -exec mv {} $out_dir \;
           done
-          tree ./images
-      
-      # creates png files from draw io image files
-      - name: Export drawio files as png
-        uses: rlespinasse/drawio-export-action@v2
-        with:
-          path: ./src/drawio/ 
-          output: .
-          format: png
-          action-mode: all
 
-      # creates svg files from draw io image files
-      - name: Export drawio files 
+      # Generate the SVGs from DrawIO
+      - name: Render DrawIO to SVG with predefined action
         uses: rlespinasse/drawio-export-action@v2
         with:
-          path: ./src/drawio/ 
+          path: ./Material/imgsrc/drawio/ 
           output: .
           format: svg
           action-mode: all
@@ -92,13 +69,16 @@ jobs:
       # copies the created png & svg files to the images/diagrams folder and deletes the drawio files
       - name: Copy draw io
         run: |
-          imagedir=images/diagrams
-          cp -RT ./src/drawio $imagedir
+          imagedir=ImplementationGuide/images/diagrams
+          cp -RT ./Material/imgsrc/drawio/ $imagedir
           find $imagedir -name '*.drawio' -exec rm -rv {} \;
           tree ./images
       
       # add and commit the new generated files
-      - name: Add & Commit
-        uses: EndBug/add-and-commit@v9
-        with:
-          add: 'ImplementationGuide/images/diagrams/'
+      - name: Commit and push
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add -A
+          git commit -m "Add rendered PlantUML and DrawIO to SVG diagrams" || exit 0
+          git push
