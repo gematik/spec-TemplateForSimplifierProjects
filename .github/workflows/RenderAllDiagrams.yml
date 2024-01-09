@@ -77,7 +77,9 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
         with:
+          branch: auto/images-generation
           commit-message: Generated Images from source Code by GitHub Action
+          title: Generated Images from GitHub Action
           reviewer: ${{ github.actor }}
       #- name: Commit and push
       #  run: |
