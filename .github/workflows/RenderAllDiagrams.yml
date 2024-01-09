@@ -37,7 +37,7 @@ jobs:
           wget -O plantuml.jar "https://github.com/plantuml/plantuml/releases/download/lastest/plantuml.jar" 
                                 
        # Clean Folder
-      name: Ensure and clean folder
+      - name: Ensure and clean folder
         run: |
           imagedir=ImplementationGuide/diagrams
           mkdir -p $imagedir
