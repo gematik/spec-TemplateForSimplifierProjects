@@ -28,8 +28,7 @@ jobs:
           for dir in $directories; do
             # Generate the corresponding out directory path
             out_dir=${ImplementationGuide/diagrams}
-            echo $out_dir
-            mkdir -p $out_dir
+            mkdir --parents $out_dir
  
             # Render SVGs from PUMLs
             find $dir -name "*.puml" -exec java -jar plantuml.jar -tsvg {} \;
