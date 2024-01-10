@@ -4,6 +4,8 @@ on:
   push:
     paths:
     - '**/Material/imgsrc/**/*.puml'
+    branches-ignore:
+    - main**
     
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -21,7 +23,7 @@ jobs:
           sudo apt-get install -y graphviz
           wget -O plantuml.jar "https://github.com/plantuml/plantuml/releases/latest/download/plantuml.jar" 
  
-      - name: Render and Move SVG files
+      - name: Render and Move PNG files
         run: |
           # Find all unique directories containing *.puml files under any /imgsrc/ folder
           directories=$(find . -path "*/imgsrc/*/*.puml" -exec dirname {} \; | sort -u)
@@ -30,11 +32,11 @@ jobs:
             out_dir=ImplementationGuide/images/diagrams
             mkdir -p $out_dir
  
-            # Render SVGs from PUMLs
-            find $dir -name "*.puml" -exec java -jar plantuml.jar -tsvg {} \;
+            # Render PNGs from PUMLs
+            find $dir -name "*.puml" -exec java -jar plantuml.jar -tpng {} \;
  
-            # Move SVGs to out directory
-            find $dir -name "*.svg" -exec mv {} $out_dir \;
+            # Move PNGs to out directory
+            find $dir -name "*.png" -exec mv {} $out_dir \;
           done
  
 
@@ -55,7 +57,7 @@ jobs:
       #    git config --local user.email "action@github.com"
       #    git config --local user.name "GitHub Action"
       #    git add -A
-      #    git commit -m "Add rendered PlantUML to SVG diagrams" || exit 0
+      #    git commit -m "Add rendered PlantUML to PNG diagrams" || exit 0
       #    git push
 
       - name: Commit rendered files
@@ -63,5 +65,4 @@ jobs:
         with:
           commit_user_name: GitHub Actions Bot
           commit_user_email: ActionBot@github.com
-          commit_author: ${{ github.actor }}
           commit_message: auto-generated diagrams by GitHub Action after source code change
