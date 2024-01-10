@@ -5,4 +5,5 @@ database db
 
 db -> app
 app -> client
+client -> db
 @enduml
