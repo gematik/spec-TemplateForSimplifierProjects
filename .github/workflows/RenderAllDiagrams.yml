@@ -50,7 +50,7 @@ jobs:
           for dir in $FileNamePaths
           do
             # Render SVGs from PUMLs
-            find $dir -name "*.puml" -exec java -jar plantuml.jar -tsvg -filename $dir {} \;
+            find $dir -name "*.puml" -exec java -jar plantuml.jar -tsvg {} \;
           done
 
       # Generate the SVGs from DrawIO
