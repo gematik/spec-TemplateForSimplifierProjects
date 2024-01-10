@@ -1,4 +1,4 @@
-@startuml
+@startuml AmNaechstenMorgen
 actor client
 node app
 database db
@@ -6,4 +6,5 @@ database db
 db -> app
 app -> client
 app -> db
+db -> client
 @enduml
