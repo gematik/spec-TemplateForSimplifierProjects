@@ -39,9 +39,9 @@ jobs:
        # Clean Folder
       - name: Ensure and clean folder
         run: |
-          img_dir=ImplementationGuide/diagrams
+          img_dir=ImplementationGuide/images/diagrams
           mkdir -p $img_dir
-          rm -rf ImplementationGuide/diagrams/*.svg
+          rm -rf ImplementationGuide/images/diagrams/*.svg
 
       # Generate the SVGs from PUML
       - name: Render PUML to SVG and Move files
