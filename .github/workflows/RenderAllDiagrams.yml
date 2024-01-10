@@ -50,7 +50,7 @@ jobs:
           for dir in $FileNamePaths
           do
             # Render SVGs from PUMLs
-            find $dir -name "*.puml" -exec java -jar plantuml.jar -tsvg {} \;
+            find $dir -name "*.puml" -exec java -jar plantuml.jar -tsvg -filename $dir {} \;
           done
 
       # Generate the SVGs from DrawIO
@@ -58,6 +58,7 @@ jobs:
         uses: rlespinasse/drawio-export-action@v2
         with:
           path: ./Material/imgsrc/drawio/ 
+          remove-page-suffix: true
           output: .
           format: svg
           action-mode: all
