@@ -57,10 +57,11 @@ jobs:
       #    git add -A
       #    git commit -m "Add rendered PlantUML to SVG diagrams" || exit 0
       #    git push
+
       - name: Commit rendered files
-      - uses: stefanzweifel/git-auto-commit-action@v5
+        uses: stefanzweifel/git-auto-commit-action@v5
         with:
-        commit_user_name: GitHub Actions Bot
-        commit_user_email: ActionBot@github.com
-        commit_author: ${{ github.actor }}
-        commit-message: auto-generated diagrams by GitHub Action after source code change
+          commit_user_name: GitHub Actions Bot
+          commit_user_email: ActionBot@github.com
+          commit_author: ${{ github.actor }}
+          commit-message: auto-generated diagrams by GitHub Action after source code change
