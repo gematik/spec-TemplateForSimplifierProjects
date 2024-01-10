@@ -1,5 +1,5 @@
 sushi:
-  min_version: "3.0.0"
+  min_version: "3.5.0"
 hapi:
   min_version: "3.0.0"
   parameters: 

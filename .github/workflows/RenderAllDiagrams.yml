@@ -39,9 +39,9 @@ jobs:
        # Clean Folder
       - name: Ensure and clean folder
         run: |
-          img_dir=ImplementationGuide/diagrams
+          img_dir=ImplementationGuide/images/diagrams
           mkdir -p $img_dir
-          rm -rf ImplementationGuide/diagrams/*.svg
+          rm -rf ImplementationGuide/images/diagrams/*.svg
 
       # Generate the SVGs from PUML
       - name: Render PUML to SVG and Move files
@@ -75,22 +75,22 @@ jobs:
             find $dir -name "*.svg" -exec mv {} $img_dir \;
           done
       
-      # add and commit the new generated files
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v5
-        with:
-          branch: auto/images-generation
-          commit-message: Generated Images from source Code by GitHub Action
-          title: Generated Images from GitHub Action
-          assignees: ${{ github.actor }}
-          reviewers: ${{ github.actor }}
-          delete-branch: true
-          labels: automated pr
+      ## add and commit the new generated files
+      #- name: Create Pull Request
+      #  uses: peter-evans/create-pull-request@v5
+      #  with:
+      #    branch: auto/images-generation
+      #    commit-message: Generated Images from source Code by GitHub Action
+      #    title: Generated Images from GitHub Action
+      #    assignees: ${{ github.actor }}
+      #    reviewers: ${{ github.actor }}
+      #    delete-branch: true
+      #    labels: automated pr
 
-      #- name: Commit and push
-      #  run: |
-      #    git config --local user.email "action@github.com"
-      #    git config --local user.name "GitHub Action"
-      #    git add -A
-      #    git commit -m "Add rendered PlantUML and DrawIO to SVG diagrams" || exit 0
-      #    git push
+      - name: Commit rendered files
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_user_name: GitHub Actions Bot
+          commit_user_email: ActionBot@github.com
+          commit_author: ${{ github.actor }}
+          commit_message: auto-generated diagrams by GitHub Action after source code change
