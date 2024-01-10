@@ -83,6 +83,9 @@ jobs:
           title: Generated Images from GitHub Action
           assignees: ${{ github.actor }}
           reviewers: ${{ github.actor }}
+          delete-branch: true
+          labels: automated pr
+
       #- name: Commit and push
       #  run: |
       #    git config --local user.email "action@github.com"
