@@ -38,7 +38,11 @@ jobs:
             # Move PNGs to out directory
             find $dir -name "*.png" -exec mv {} $out_dir \;
           done
- 
+      
+      # Remove plantUML jar 
+      - name: remove plantuml file
+        run: |
+          rm -f plantuml.jar
 
       # # add and commit the new generated files
       #- name: Create Pull Request
