@@ -1,4 +1,5 @@
-![Include Gematik Logo](ImplementationGuide/images/Gematik_Logo_Flag.png)
+<img align="right" width="250" height="47" src="/Material/images/Gematik_Logo_Flag.svg"/> <br/> 
+
 
 # About
 This template standardizes the development of fhir resources with .fsh resources. It should reduce time for setup and ease the development process.
@@ -32,7 +33,8 @@ or you can execute these steps manually:
 * delete [this readme file](./README.md) and rename Readme_template.md with README.md
 
 Finally you will need to
-* populate the new README.md with information for your repository
+* Create or re-use the OSPO conform README which can be found in this repository [PROJECT_README.md](/PROJECT_README.md) too.
+* populate the new/renamed README.md with information for your repository.
 
 # Usage <a name = "usage"></a>
 Information about using the preconfigured devontainer including sushi, hapi validator and the codfsh-Extension can be found in [usage page](./USAGE.md).
