@@ -18,7 +18,10 @@
 				"codfsh.HapiValidator.Settings.SettingsFile": "/home/vscode/.fhir/settings/codfsh-config.yaml"
 			}
 		}
-	}
+	},
+	"mounts": [
+		"source=${localEnv:HOME}${localEnv:USERPROFILE}/.fhir/packages,target=/home/vscode/.fhir/packages,type=bind"
+	]
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},
