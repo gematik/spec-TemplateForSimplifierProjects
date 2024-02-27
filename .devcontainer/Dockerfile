@@ -44,10 +44,6 @@ RUN apk update && apk add --no-cache jq findutils curl ca-certificates
 RUN mkdir -p /home/vscode/.fhir/validators/
 RUN wget -q https://github.com/hapifhir/org.hl7.fhir.core/releases/download/$JAVA_VALIDATOR_VERSION/validator_cli.jar -O /home/vscode/.fhir/validators/validator_cli.jar
 
-# Set ownership
-RUN mkdir -p /home/vscode/.fhir/packages && \
-    chown -R vscode:vscode /home/vscode/.fhir/packages
-
 RUN mkdir -p /home/vscode/.fhir/settings/
 COPY codfsh-config.yaml /home/vscode/.fhir/settings/codfsh-config.yaml
 
