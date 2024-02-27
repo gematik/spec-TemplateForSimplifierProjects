@@ -11,7 +11,8 @@
 			"extensions": [
 				"gematikde.codfsh",
 				"MITRE-Health.vscode-language-fsh",
-				"ms-azuretools.vscode-docker"
+				"ms-azuretools.vscode-docker",
+				"edenlabio.fhir-profiler-tool"
 			],
 			"settings": {
 				"codfsh.HapiValidator.Executable": "/home/vscode/.fhir/validators/validator_cli.jar",
