@@ -1,16 +1,6 @@
 {
   "resourceType": "StructureDefinition",
   "id": "ExamplePatient",
-  "extension": [
-    {
-      "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-category",
-      "valueString": "Base.Individuals"
-    },
-    {
-      "url": "http://hl7.org/fhir/StructureDefinition/structuredefinition-security-category",
-      "valueCode": "patient"
-    }
-  ],
   "url": "https://gematik.de/fhir/isik/v2/Basismodul/StructureDefinition/ExamplePatient",
   "name": "ExamplePatient",
   "status": "active",
@@ -305,14 +295,12 @@
         "id": "Patient.name:Name.family.extension:nachname",
         "path": "Patient.name.family.extension",
         "sliceName": "nachname",
-        "max": "1",
         "mustSupport": true
       },
       {
         "id": "Patient.name:Name.family.extension:vorsatzwort",
         "path": "Patient.name.family.extension",
         "sliceName": "vorsatzwort",
-        "max": "1",
         "mustSupport": true
       },
       {
@@ -379,14 +367,12 @@
         "id": "Patient.name:Geburtsname.family.extension:nachname",
         "path": "Patient.name.family.extension",
         "sliceName": "nachname",
-        "max": "1",
         "mustSupport": true
       },
       {
         "id": "Patient.name:Geburtsname.family.extension:vorsatzwort",
         "path": "Patient.name.family.extension",
         "sliceName": "vorsatzwort",
-        "max": "1",
         "mustSupport": true
       },
       {
