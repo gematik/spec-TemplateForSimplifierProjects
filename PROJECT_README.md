@@ -25,7 +25,7 @@ See [ReleaseNotes.md](/ImplementationGuide/markdown/ReleaseNotes.md) for all inf
 
 ## License
  
-Copyright 2024 gematik GmbH
+Copyright 2025 gematik GmbH
  
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
  
